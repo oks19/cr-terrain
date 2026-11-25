@@ -86,8 +86,8 @@ a.nav { display:block; text-align:center; text-decoration:none; background:#eef3
    ============================================================ */
 
 // Données des sites : chiffrées, injectées par build.js (déchiffrées après connexion)
-const SEC = {"iter":310000,"data":{"iv":"15MBsNN1SS7hVXFP","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"eK37HMRRaHoUKfI6","wk":"v4HuuqVQyF6zqpWbLH/suzsnogwqxBhVsKVz4VF9errKgIb1ApHDLPQbLnAlpcwB"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"i4fBkUB3pVmFjdpq","wk":"qpfyCvhHSMNeHoJdAbpHGVdCgGlYSi3g2rHG2ZerigUbSnfU4Cto3wRlZHKaXUPw"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"tviHKOd6fooRAgZu","wk":"UOwsNU8vog2e3bQ4gBK32e+Fap5lLzJw+FnP/dHND1UmgWqdTb/viU3ClqVEMlE7"}},"docs":[{"name":"FIR Nationale Orange.pdf","file":"fir-kjoa7Z09.bin","iv":"Ju1D+6Q89tmB5H+t"}]};
-const BUILD = '2026-11-25 10:18';
+const SEC = {"iter":310000,"data":{"iv":"BX5ntqCELd5hI0GR","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"4RP2mHMvq+Z9mgT7","wk":"pzzhc9RBNZfTtclptx0kgG3MWjshPQuwOl9Gc5Hinzm1xc00uXmbaG1rjEMcqNvV"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"ehfIvBfdujgkGwO7","wk":"NU4emEEcpr/LDJL9pjBJsiIA3G6N8X5kRGa186CHOSx1AKGTNW8z3TOh2rbK+Hlo"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"a2GBRKtwHbVzelA/","wk":"a6Dm0xsLG36hGZ2ded0q1QP5TsTLOJP9GNzbV/JcCllEawbMJyE/f+68qS2TBdsL"}},"docs":[{"name":"FIR Nationale Orange.pdf","file":"fir-EnfEfhyI.bin","iv":"Jfxl7aVd8WJt2C22"}]};
+const BUILD = '2026-11-25 12:09';
 
 // Parcours : 2 photos avant, intervention, 6 photos après, fin
 // cap = légende dans le PDF (toujours en français)
@@ -147,8 +147,8 @@ const I18N = {
     recapHead:'{0} – récapitulatif', recapT:'Vérification des 8 photos', recapHint:'Touchez une photo pour la reprendre.', missing:'{0} photo(s) manquante(s).', generate:'Générer le compte rendu',
     nokHead:'{0} – non réalisé', ph_nok:'NON FAIT', nokT:'Intervention impossible', motif:'Motif', motifAutre:'Précisez le motif', cause:'Cause constatée', choose:'— Choisir —',
     legende:'Légende de la photo', legNote:'', cancelNok:'Annuler (revenir au site)', e_motif:'Précisez le motif.',
-    crHead:'{0} – compte rendu', pages:'{0} page(s)', backSite:'Retour au site', download:'Télécharger', share:'Partager', pdfLang:'',
-    generating:'Génération du compte rendu…', genErr:'Erreur lors de la génération : ', noShare:'Le partage direct n\'est pas disponible ici : le PDF va être téléchargé.',
+    crHead:'{0} – compte rendu', pages:'{0} page(s)', backSite:'Retour au site', download:'Télécharger', share:'Partager', zipShare:'📦 Partager (PDF + photos)', zipDl:'Télécharger le ZIP', pdfOnly:'Partager le PDF seul', zipInfo:'ZIP : le PDF + le dossier Photos (avant / après, photos d’origine)', pdfLang:'',
+    generating:'Génération du compte rendu…', genErr:'Erreur lors de la génération : ', noShare:'Le partage direct n\'est pas disponible ici : le fichier va être téléchargé.',
     login_t:'Connexion', login_user:'Identifiant', login_pw:'Mot de passe', login_btn:'Se connecter', login_wait:'Vérification…',
     login_err:'Identifiant ou mot de passe incorrect.', login_exp:'Votre accès a été mis à jour : reconnectez-vous.', login_hint:'Identifiants fournis par votre responsable.',
     logout:'Se déconnecter', logoutQ:'Se déconnecter ? Les photos déjà prises restent sur le téléphone.', connected:'Connecté : {0}',
@@ -184,8 +184,8 @@ const I18N = {
     recapHead:'{0} – përmbledhje', recapT:'Kontrolli i 8 fotove', recapHint:'Prek një foto për ta bërë përsëri.', missing:'Mungojnë {0} foto.', generate:'Krijo raportin',
     nokHead:'{0} – pa kryer', ph_nok:'PA KRYER', nokT:'Ndërhyrja e pamundur', motif:'Arsyeja', motifAutre:'Saktëso arsyen (në frëngjisht, për PDF-në)', cause:'Shkaku i konstatuar', choose:'— Zgjidh —',
     legende:'Përshkrimi i fotos', legNote:'(teksti i PDF-së, në frëngjisht)', cancelNok:'Anulo (kthehu te objekti)', e_motif:'Saktëso arsyen.',
-    crHead:'{0} – raporti', pages:'{0} faqe', backSite:'Kthehu te objekti', download:'Shkarko', share:'Ndaj', pdfLang:'Raporti PDF është në frëngjisht.',
-    generating:'Duke krijuar raportin…', genErr:'Gabim gjatë krijimit: ', noShare:'Ndarja e drejtpërdrejtë nuk është e disponueshme këtu: PDF-ja do të shkarkohet.',
+    crHead:'{0} – raporti', pages:'{0} faqe', backSite:'Kthehu te objekti', download:'Shkarko', share:'Ndaj', zipShare:'📦 Ndaj (PDF + foto)', zipDl:'Shkarko ZIP', pdfOnly:'Ndaj vetëm PDF-në', zipInfo:'ZIP: PDF-ja + dosja Foto (para / pas, fotot origjinale)', pdfLang:'Raporti PDF është në frëngjisht.',
+    generating:'Duke krijuar raportin…', genErr:'Gabim gjatë krijimit: ', noShare:'Ndarja e drejtpërdrejtë nuk është e disponueshme këtu: skedari do të shkarkohet.',
     login_t:'Hyrja', login_user:'Përdoruesi', login_pw:'Fjalëkalimi', login_btn:'Hyr', login_wait:'Duke verifikuar…',
     login_err:'Përdoruesi ose fjalëkalimi i gabuar.', login_exp:'Qasja juaj u përditësua: hyni përsëri.', login_hint:'Të dhënat e hyrjes jepen nga përgjegjësi juaj.',
     logout:'Dil', logoutQ:'Të dilni? Fotot e bëra mbeten në telefon.', connected:'I lidhur: {0}',
@@ -243,7 +243,10 @@ async function idb(mode, fn) {
 }
 const putPhoto = (nro, k, blob) => idb('readwrite', s => s.put(blob, nro + ':' + k));
 const getPhoto = (nro, k) => idb('readonly', s => s.get(nro + ':' + k));
-const delPhoto = (nro, k) => idb('readwrite', s => s.delete(nro + ':' + k));
+const delPhoto = async (nro, k) => { await idb('readwrite', s => s.delete(nro + ':' + k)); await idb('readwrite', s => s.delete(nro + ':' + k + '.o')); };
+// Original : stocké à part (clé « .o ») ; à défaut, la version réduite
+const putOrig = (nro, k, file) => file ? idb('readwrite', s => s.put(new Blob([file], { type: file.type || 'image/jpeg' }), nro + ':' + k + '.o')) : null;
+const getOrig = async (nro, k) => (await idb('readonly', s => s.get(nro + ':' + k + '.o'))) || getPhoto(nro, k);
 
 const urlCache = {};
 async function photoURL(nro, k) {
@@ -268,6 +271,7 @@ const noteTxt = s => s.note ? (typeof s.note === 'object' ? (s.note[LANG] || s.n
 function busy(msg) { const b = document.getElementById('busy'); b.textContent = msg || ''; b.classList.toggle('hidden', !msg); }
 
 // Prise de photo : ouvre l'appareil, réduit à 1600 px, stocke en JPEG
+let lastOrig = null; // fichier d'origine de la dernière photo (pour le ZIP)
 function takePhoto(gallery = false) {
   return new Promise(resolve => {
     const inp = document.getElementById('cam');
@@ -276,6 +280,7 @@ function takePhoto(gallery = false) {
     inp.onchange = async () => {
       const f = inp.files && inp.files[0];
       if (!f) return resolve(null);
+      lastOrig = f;
       busy(t('saving'));
       try { resolve(await shrink(f, 1600, 0.85)); } catch (e) { alert(t('badPhoto') + e.message); resolve(null); } finally { busy(''); }
     };
@@ -462,8 +467,8 @@ async function shoot(k, gallery = false) {
   const blob = await takePhoto(gallery);
   if (!blob) return;
   const s = siteBy(current);
-  dropURL(s.nro, k); await putPhoto(s.nro, k, blob);
-  autoBackup(s, k, blob, gallery);
+  dropURL(s.nro, k); await putPhoto(s.nro, k, blob); await putOrig(s.nro, k, lastOrig);
+  autoBackup(s, k, lastOrig || blob, gallery);
   renderStep();
 }
 
@@ -541,7 +546,7 @@ async function setCause(k) {
 }
 async function shootNok(k = 'nok', gallery = false) {
   const blob = await takePhoto(gallery); if (!blob) return;
-  const s = siteBy(current); dropURL(s.nro, k); await putPhoto(s.nro, k, blob); autoBackup(s, k, blob, gallery); renderNok();
+  const s = siteBy(current); dropURL(s.nro, k); await putPhoto(s.nro, k, blob); await putOrig(s.nro, k, lastOrig); autoBackup(s, k, lastOrig || blob, gallery); renderNok();
 }
 function cancelNok() { const s = siteBy(current); s.mode = null; save(); renderSite(); }
 function finishNok() {
@@ -553,18 +558,49 @@ function finishNok() {
 
 /* ---- Sauvegarde des photos dans le téléphone (si les données de l'appli étaient effacées) ---- */
 const NOK_CAP = { nok:'Constat', nok_site:'Vue globale du site', nok_arr:'Baie face arrière' };
-const photoName = (s, k) => (s.nro + ' - ' + ((STEP[k] && STEP[k].cap) || NOK_CAP[k] || k) + '.jpg').replace(/[\\/:*?"<>|]/g, '-');
+const extOf = b => ({ 'image/png':'png', 'image/heic':'heic', 'image/heif':'heif', 'image/webp':'webp' }[b && b.type] || 'jpg');
+const photoName = (s, k, b) => (s.nro + ' - ' + ((STEP[k] && STEP[k].cap) || NOK_CAP[k] || k) + '.' + extOf(b)).replace(/[\\/:*?"<>|]/g, '-');
 function downloadBlob(blob, name) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
 }
 // Android : copie automatique dans « Téléchargements » de chaque photo prise avec l'appareil
-function autoBackup(s, k, blob, gallery) { if (!IS_IOS && !gallery) { try { downloadBlob(blob, photoName(s, k)); } catch (e) {} } }
+function autoBackup(s, k, blob, gallery) { if (!IS_IOS && !gallery) { try { downloadBlob(blob, photoName(s, k, blob)); } catch (e) {} } }
 let crPhotos = [];
 async function loadCrPhotos(s) {
   const keys = s.status === 'nok' ? nokList(s).map(p => p.k) : PHOTO_STEPS.map(p => p.k);
   crPhotos = [];
-  for (const k of keys) { const b = await getPhoto(s.nro, k); if (b) crPhotos.push(new File([b], photoName(s, k), { type:'image/jpeg' })); }
+  for (const k of keys) {
+    const b = await getOrig(s.nro, k); if (!b) continue;
+    const file = new File([b], photoName(s, k, b), { type: b.type || 'image/jpeg' });
+    file.dir = s.status === 'nok' ? 'Photos/' : 'Photos/' + (STEP[k].ph === 'avant' ? '1 - Avant' : '2 - Après') + '/';
+    crPhotos.push(file);
+  }
+}
+
+/* ---- ZIP (sans compression : les photos le sont déjà) ---- */
+const CRC_T = (() => { const t = new Uint32Array(256); for (let i = 0; i < 256; i++) { let c = i; for (let j = 0; j < 8; j++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[i] = c >>> 0; } return t; })();
+function crc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC_T[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+async function makeZip(entries) { // entries : [{ name, blob }]
+  const enc = new TextEncoder(), parts = [], central = [];
+  const d = new Date(), dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)), dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate());
+  let off = 0;
+  for (const e of entries) {
+    const data = new Uint8Array(await e.blob.arrayBuffer()), nm = enc.encode(e.name), crc = crc32(data);
+    const lh = new DataView(new ArrayBuffer(30));
+    [[0, 0x04034b50, 4], [4, 20, 2], [6, 0x0800, 2], [8, 0, 2], [10, dt, 2], [12, dd, 2], [14, crc, 4], [18, data.length, 4], [22, data.length, 4], [26, nm.length, 2], [28, 0, 2]]
+      .forEach(([o, v, l]) => l === 4 ? lh.setUint32(o, v, true) : lh.setUint16(o, v, true));
+    const ch = new DataView(new ArrayBuffer(46));
+    [[0, 0x02014b50, 4], [4, 20, 2], [6, 20, 2], [8, 0x0800, 2], [10, 0, 2], [12, dt, 2], [14, dd, 2], [16, crc, 4], [20, data.length, 4], [24, data.length, 4], [28, nm.length, 2], [30, 0, 2], [32, 0, 2], [34, 0, 2], [36, 0, 2], [38, 0, 4], [42, off, 4]]
+      .forEach(([o, v, l]) => l === 4 ? ch.setUint32(o, v, true) : ch.setUint16(o, v, true));
+    parts.push(lh.buffer, nm, data); central.push(ch.buffer, nm);
+    off += 30 + nm.length + data.length;
+  }
+  const cdSize = central.reduce((a, b) => a + b.byteLength, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  [[0, 0x06054b50, 4], [8, entries.length, 2], [10, entries.length, 2], [12, cdSize, 4], [16, off, 4]]
+    .forEach(([o, v, l]) => l === 4 ? end.setUint32(o, v, true) : end.setUint16(o, v, true));
+  return new Blob([...parts, ...central, end.buffer], { type:'application/zip' });
 }
 async function savePhotos() {
   if (!crPhotos.length) return alert(t('savePhNone'));
@@ -574,7 +610,7 @@ async function savePhotos() {
 }
 
 /* ---- Compte rendu : aperçu + partage (PDF toujours en français) ---- */
-let lastPdf = null;
+let lastPdf = null, lastZip = null;
 async function renderCR() {
   rerender = renderCR;
   const s = siteBy(current);
@@ -584,17 +620,20 @@ async function renderCR() {
     lastPdf = { name: `${s.nro} - CR Installation électrique Juniper.pdf`, blob: await makePdf(pages) };
     const imgs = pages.map(c => c.toDataURL('image/jpeg', 0.6));
     await loadCrPhotos(s);
+    lastZip = { name: `${s.nro} - CR Juniper.zip`, blob: await makeZip([{ name: lastPdf.name, blob: lastPdf.blob }, ...crPhotos.map(p => ({ name: p.dir + p.name, blob: p }))]) };
     $app.innerHTML = bar(t('crHead', esc(s.nro)), 'renderPlanning()') + `<main>
       <div class="card"><b>${esc(lastPdf.name)}</b><div class="muted">${t('pages', pages.length)} · ${(lastPdf.blob.size / 1e6).toFixed(1)} Mo</div>
+        <div class="muted" style="margin-top:4px">${t('zipInfo')} · ${crPhotos.length} photo(s) · ${(lastZip.blob.size / 1e6).toFixed(1)} Mo</div>
         ${t('pdfLang') ? `<div class="muted" style="margin-top:4px">${t('pdfLang')}</div>` : ''}</div>
       <div class="preview">${imgs.map(u => `<img src="${u}">`).join('')}</div>
+      <button class="btn ghost" onclick="sharePdf()">${t('pdfOnly')}</button>
       <button class="btn ghost" onclick="savePhotos()">${t('savePh')}</button>
       ${IS_IOS ? `<div class="muted" style="text-align:center;font-size:13px;margin-top:4px">${t('savePhIos')}</div>` : ''}
       <button class="btn ghost" onclick="openSite('${esc(s.nro)}')">${t('backSite')}</button>
     </main>
     <div class="footer"><div class="inner row">
-      <button class="btn ghost" onclick="downloadPdf()">${t('download')}</button>
-      <button class="btn green" onclick="sharePdf()">${t('share')}</button>
+      <button class="btn ghost" onclick="downloadZip()">${t('zipDl')}</button>
+      <button class="btn green" onclick="shareZip()">${t('zipShare')}</button>
     </div></div>`;
     scrollTo(0, 0);
   } catch (e) { alert(t('genErr') + e.message); console.error(e); }
@@ -603,6 +642,13 @@ async function renderCR() {
 function downloadPdf() {
   const a = document.createElement('a'); a.href = URL.createObjectURL(lastPdf.blob); a.download = lastPdf.name;
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+function downloadZip() { downloadBlob(lastZip.blob, lastZip.name); }
+async function shareZip() {
+  const file = new File([lastZip.blob], lastZip.name, { type:'application/zip' });
+  if (navigator.canShare && navigator.canShare({ files:[file] })) {
+    try { await navigator.share({ files:[file] }); } catch (e) { if (e.name !== 'AbortError') downloadZip(); }
+  } else { alert(t('noShare')); downloadZip(); }
 }
 async function sharePdf() {
   const file = new File([lastPdf.blob], lastPdf.name, { type:'application/pdf' });
