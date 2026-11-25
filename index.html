@@ -84,8 +84,8 @@ a.nav { display:block; text-align:center; text-decoration:none; background:#eef3
    ============================================================ */
 
 // Données des sites : chiffrées, injectées par build.js (déchiffrées après connexion)
-const SEC = {"iter":310000,"data":{"iv":"6IR4RWsmEZ8KEwys","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"9fRjqSR9UbG7lbkg","wk":"Fg5WdTUCppt7JXEpvHVAFEkAQKzqB5XBRhy4+mMg6yqIE3xhs+IeepVh3LqZKliQ"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"ODnGgUhdVH+wMGvt","wk":"MCu2+WXskz5JiymW4jtqqsO+g3O32S0vZpk8xxhGJsCC6E5jBctElnfnxLQ5QiQU"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"dF3NkUgOzdLDc3wz","wk":"tg3dWuQlp9EhxXDucKNg6Iw7x9MkSyZQ4wCWc8iYJkqFq+oWLM2do+AHJ9wpxh/Q"}}};
-const BUILD = '2026-11-25 03:18';
+const SEC = {"iter":310000,"data":{"iv":"n6Lq4+F8xyp27EM0","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"dP4r2Pyr1CQGi9LB","wk":"kXPd5rMkWeI/gkyemTlgsIXcSYtg2JrFQ5vaUtX13ulQr2KUQ6mQqR0erhSha5ND"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"9EsvEJRyw5xaQlSR","wk":"zke+E8OanNCmkjZZ9wfH+WC02PTam2hi6l/rwow+quW7bcs/DdYoR4gxCocc1zoG"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"S8sHG2xGIT+xBqS/","wk":"obThiH6zEbZs0eMD/mZMjdYXSNqP+XzOmjVMIC1bfQNo0npaUT+SSN1pFU/VpeK3"}}};
+const BUILD = '2026-11-25 08:29';
 
 // Parcours : 2 photos avant, intervention, 6 photos après, fin
 // cap = légende dans le PDF (toujours en français)
@@ -132,7 +132,7 @@ const I18N = {
     reset:'Réinitialiser ce site', resetQ:'Effacer toutes les photos et le statut de ce site ?', start:'▶ Commencer', impossible:'Intervention impossible (non fait)',
     stepHead:'{0} – étape {1}/{2}', prev:'◀ Précédent', ph_inter:'INTERVENTION', inter_t:'Raccordement électrique du Juniper',
     inter_txt:'Les 2 photos <b>avant</b> sont prises.<br><br>Réalise l\'intervention, puis appuie sur <b>« Intervention terminée »</b> pour passer aux 6 photos après.',
-    inter_done:'Intervention terminée ✓', ph_avant:'AVANT', ph_apres:'APRÈS', photoN:'photo {0}/8', retake:'Reprendre la photo', next:'Suivant ▶', take:'📷 Prendre la photo',
+    inter_done:'Intervention terminée ✓', ph_avant:'AVANT', ph_apres:'APRÈS', photoN:'photo {0}/8', retake:'Reprendre la photo', delPh:'🗑 Supprimer la photo', delPhQ:'Supprimer cette photo ?', cancelInter:'✖ Annuler l’intervention (repasser en « À faire »)', cancelInterQ:'Annuler l’intervention ? Le site repasse en « À faire ». Les photos déjà prises sont conservées.', backTodo:'↩ Remettre en « À faire »', backTodoQ:'Remettre ce site en « À faire » ? Les photos sont conservées.', next:'Suivant ▶', take:'📷 Prendre la photo',
     saving:'Enregistrement de la photo…', badPhoto:'Photo illisible : ',
     recapHead:'{0} – récapitulatif', recapT:'Vérification des 8 photos', recapHint:'Touchez une photo pour la reprendre.', missing:'{0} photo(s) manquante(s).', generate:'Générer le compte rendu',
     nokHead:'{0} – non réalisé', ph_nok:'NON FAIT', nokT:'Intervention impossible', motif:'Motif', motifAutre:'Précisez le motif', cause:'Cause constatée', choose:'— Choisir —',
@@ -158,7 +158,7 @@ const I18N = {
   },
   sq: {
     app:'Raport – Instalim elektrik Juniper', back:'← Kthehu', planning:'Plani i {0}', nodate:'Pa datë', addSite:'+ Shto një objekt',
-    st_todo:'Për t\'u bërë', st_progress:'Në proces', st_done:'Kryer', st_nok:'Pa kryer', repasse:'Rikthim',
+    st_todo:'Për t’u bërë', st_progress:'Në proces', st_done:'Kryer', st_nok:'Pa kryer', repasse:'Rikthim',
     f_title:'Shto një objekt', f_nro:'Kodi i objektit (NRO / NRA) *', f_adr:'Adresa', f_cp:'Kodi postar', f_ville:'Qyteti', f_date:'Data e planifikuar', f_add:'Shto në plan',
     e_nro:'Kodi i objektit është i detyrueshëm.', e_dup:'Ky objekt është tashmë në plan.',
     i_site:'Objekti', i_adr:'Adresa', i_date:'Data e planifikuar', i_inter:'Ndërhyrja', i_motif:'Arsyeja',
@@ -168,7 +168,7 @@ const I18N = {
     reset:'Rivendos këtë objekt', resetQ:'Të fshihen të gjitha fotot dhe statusi i këtij objekti?', start:'▶ Fillo', impossible:'Ndërhyrja e pamundur (pa kryer)',
     stepHead:'{0} – hapi {1}/{2}', prev:'◀ Mbrapa', ph_inter:'NDËRHYRJA', inter_t:'Lidhja elektrike e Juniper',
     inter_txt:'2 fotot <b>para</b> janë bërë.<br><br>Kryej ndërhyrjen, pastaj shtyp <b>« Ndërhyrja përfundoi »</b> për të kaluar te 6 fotot pas.',
-    inter_done:'Ndërhyrja përfundoi ✓', ph_avant:'PARA', ph_apres:'PAS', photoN:'foto {0}/8', retake:'Bëje përsëri foton', next:'Vazhdo ▶', take:'📷 Bëj foton',
+    inter_done:'Ndërhyrja përfundoi ✓', ph_avant:'PARA', ph_apres:'PAS', photoN:'foto {0}/8', retake:'Bëje përsëri foton', delPh:'🗑 Fshi foton', delPhQ:'Të fshihet kjo foto?', cancelInter:'✖ Anulo ndërhyrjen (kthehu te « Për t’u bërë »)', cancelInterQ:'Të anulohet ndërhyrja? Objekti kthehet te « Për t’u bërë ». Fotot e bëra ruhen.', backTodo:'↩ Ktheje te « Për t’u bërë »', backTodoQ:'Ta kthej këtë objekt te « Për t’u bërë »? Fotot ruhen.', next:'Vazhdo ▶', take:'📷 Bëj foton',
     saving:'Duke ruajtur foton…', badPhoto:'Foto e palexueshme: ',
     recapHead:'{0} – përmbledhje', recapT:'Kontrolli i 8 fotove', recapHint:'Prek një foto për ta bërë përsëri.', missing:'Mungojnë {0} foto.', generate:'Krijo raportin',
     nokHead:'{0} – pa kryer', ph_nok:'PA KRYER', nokT:'Ndërhyrja e pamundur', motif:'Arsyeja', motifAutre:'Saktëso arsyen (në frëngjisht, për PDF-në)', cause:'Shkaku i konstatuar', choose:'— Zgjidh —',
@@ -362,6 +362,7 @@ async function renderSite() {
     ${done ? `
       <button class="btn green" onclick="renderCR()">${t('seeCR')}</button>
       <button class="btn ghost" onclick="${s.status === 'nok' ? 'reopenNok()' : 'reopen()'}">${t('editPhotos')}</button>
+      <div style="margin-top:10px;text-align:center"><button class="link" onclick="backToTodo('backTodoQ')">${t('backTodo')}</button></div>
     ` : `<div class="card muted">${t('parcours')}</div>`}
     <div style="margin-top:22px;text-align:center">
       <button class="link red" onclick="resetSite()">${t('reset')}</button>
@@ -402,6 +403,7 @@ async function renderStep() {
       <div class="step-title">${t('inter_t')}</div>
       <div class="card">${t('inter_txt')}</div>
       ${prev}
+      <div style="margin-top:18px;text-align:center"><button class="link red" onclick="backToTodo('cancelInterQ')">${t('cancelInter')}</button></div>
     </main>
     <div class="footer"><div class="inner"><button class="btn green" onclick="goStep(${s.step + 1})">${t('inter_done')}</button></div></div>`;
     return;
@@ -416,14 +418,29 @@ async function renderStep() {
     <div class="step-title">${t('s.' + st.k)}</div>
     <div class="muted">${t('h.' + st.k)}</div>
     <div class="photo-box" onclick="shoot('${st.k}')">${url ? `<img src="${url}">` : '<div class="muted" style="font-size:48px">📷</div>'}</div>
-    ${url ? `<button class="btn ghost" onclick="shoot('${st.k}')">${t('retake')}</button>` : ''}
+    ${url ? `<button class="btn ghost" onclick="shoot('${st.k}')">${t('retake')}</button><div style="text-align:center"><button class="link red" onclick="removePhoto('${st.k}')">${t('delPh')}</button></div>` : ''}
     ${prev}
+    <div style="margin-top:18px;text-align:center"><button class="link red" onclick="backToTodo('cancelInterQ')">${t('cancelInter')}</button></div>
   </main>
   <div class="footer"><div class="inner">
     ${url ? `<button class="btn green" onclick="goStep(${s.step + 1})">${t('next')}</button>`
           : `<button class="btn" onclick="shoot('${st.k}')">${t('take')}</button>`}
   </div></div>`;
   scrollTo(0, 0);
+}
+// Supprime une photo (étape du parcours ou photo « non fait »)
+async function removePhoto(k) {
+  if (!confirm(t('delPhQ'))) return;
+  const s = siteBy(current);
+  dropURL(s.nro, k); await delPhoto(s.nro, k);
+  k === 'nok' ? renderNok() : renderStep();
+}
+// Retour à « À faire » depuis n'importe quel état (en cours, fait, non fait) ; les photos restent
+function backToTodo(q) {
+  if (!confirm(t(q))) return;
+  const s = siteBy(current);
+  Object.assign(s, { status:'todo', step:0, mode:null, dateInter:null, motifTxt:null });
+  save(); renderSite();
 }
 function goStep(i) { const s = siteBy(current); s.step = i; save(); renderStep(); }
 async function shoot(k) {
@@ -448,6 +465,7 @@ async function renderFin() {
         ${urls[i] ? `<img src="${urls[i]}">` : ''}<span>${p.ph === 'avant' ? t('ph_avant') + ' · ' : ''}${t('s.' + p.k)}</span>
       </div>`).join('')}</div>
     ${missing ? `<div class="card" style="margin-top:12px;color:var(--red);font-weight:600">${t('missing', missing)}</div>` : ''}
+    <div style="margin-top:18px;text-align:center"><button class="link red" onclick="backToTodo('cancelInterQ')">${t('cancelInter')}</button></div>
   </main>
   <div class="footer"><div class="inner">
     <button class="btn green" ${missing ? 'disabled' : ''} onclick="finish()">${t('generate')}</button>
@@ -486,7 +504,7 @@ async function renderNok() {
     </div>
     <div class="muted">${t('mh.' + (s.motif || 'acces'))}</div>
     <div class="photo-box" onclick="shootNok()">${url ? `<img src="${url}">` : '<div class="muted" style="font-size:48px">📷</div>'}</div>
-    ${url ? `<button class="btn ghost" onclick="shootNok()">${t('retake')}</button>` : ''}
+    ${url ? `<button class="btn ghost" onclick="shootNok()">${t('retake')}</button><div style="text-align:center"><button class="link red" onclick="removePhoto('nok')">${t('delPh')}</button></div>` : ''}
     <div style="margin-top:14px;text-align:center"><button class="link" onclick="cancelNok()">${t('cancelNok')}</button></div>
   </main>
   <div class="footer"><div class="inner">
