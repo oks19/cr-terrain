@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b4f8a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CR Juniper">
+<meta name="robots" content="noindex, nofollow">
+<title>CR Installation électrique Juniper</title>
+<style>
+:root { --blue:#0b4f8a; --green:#1e8a4c; --red:#c0392b; --brown:#8a5a1e; --bg:#f2f5f8; --line:#d5dde6; --txt:#1d2733; --mut:#5b6b7c; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin:0; background:var(--bg); color:var(--txt); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; font-size:16px; }
+header.bar { padding-top: max(12px, env(safe-area-inset-top)) !important; }
+header.bar { position:sticky; top:0; z-index:5; background:var(--blue); color:#fff; padding:12px 14px; display:flex; align-items:center; gap:10px; min-height:54px; }
+header.bar h1 { font-size:17px; margin:0; flex:1; line-height:1.2; }
+header.bar button { background:rgba(255,255,255,.15); color:#fff; border:0; border-radius:8px; padding:8px 10px; font-size:15px; }
+main { padding:14px; max-width:640px; margin:0 auto; padding-bottom:110px; }
+.card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:12px; }
+.site { display:flex; align-items:center; gap:12px; cursor:pointer; }
+.site .nro { font-weight:800; font-size:19px; color:var(--blue); min-width:68px; }
+.site .addr { flex:1; font-size:14px; color:var(--mut); line-height:1.3; }
+.pill { display:inline-block; font-size:12px; font-weight:700; padding:4px 9px; border-radius:20px; color:#fff; white-space:nowrap; }
+.p-todo { background:#8796a5; } .p-progress { background:#d68910; } .p-done { background:var(--green); } .p-nok { background:var(--red); }
+.muted { color:var(--mut); font-size:14px; }
+h2 { font-size:15px; text-transform:uppercase; letter-spacing:.05em; color:var(--mut); margin:18px 2px 8px; }
+.btn { display:block; width:100%; border:0; border-radius:12px; padding:16px; font-size:17px; font-weight:700; color:#fff; background:var(--blue); margin-top:10px; }
+.btn.green { background:var(--green); } .btn.red { background:var(--red); } .btn.ghost { background:#fff; color:var(--blue); border:2px solid var(--blue); }
+.btn:disabled { opacity:.4; }
+.row { display:flex; gap:10px; } .row > * { flex:1; }
+.footer { position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid var(--line); padding:10px 14px calc(10px + env(safe-area-inset-bottom)); }
+.footer .inner { max-width:640px; margin:0 auto; }
+.footer .btn { margin-top:0; }
+.progress { height:8px; background:#dde4eb; border-radius:4px; overflow:hidden; margin:4px 0 12px; }
+.progress > div { height:100%; background:var(--green); transition:width .3s; }
+.phase { display:inline-block; font-weight:800; font-size:13px; letter-spacing:.1em; color:#fff; padding:4px 10px; border-radius:6px; margin-bottom:8px; }
+.ph-avant { background:var(--brown); } .ph-apres { background:var(--green); } .ph-inter { background:var(--blue); } .ph-nok { background:var(--red); }
+.step-title { font-size:22px; font-weight:800; margin:2px 0 6px; }
+.photo-box { margin-top:12px; border:2px dashed var(--line); border-radius:12px; min-height:240px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#fafbfc; }
+.photo-box img { width:100%; max-height:60vh; object-fit:contain; display:block; }
+.thumbs { display:grid; grid-template-columns: repeat(4, 1fr); gap:8px; }
+.thumb { position:relative; aspect-ratio:3/4; background:#e8edf2; border-radius:8px; overflow:hidden; border:2px solid transparent; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.thumb span { position:absolute; left:0; right:0; bottom:0; background:rgba(0,0,0,.6); color:#fff; font-size:10px; padding:3px; line-height:1.2; text-align:center; }
+.thumb.missing { border-color:var(--red); }
+.preview img { width:100%; display:block; border:1px solid var(--line); border-radius:6px; margin-bottom:10px; box-shadow:0 2px 6px rgba(0,0,0,.08); }
+label { display:block; font-weight:700; font-size:14px; margin:12px 0 5px; }
+input[type=text], input[type=password], select, textarea { width:100%; font-size:16px; padding:12px; border:1px solid var(--line); border-radius:10px; background:#fff; font-family:inherit; }
+.info td { padding:3px 0; vertical-align:top; font-size:15px; } .info td:first-child { color:var(--mut); padding-right:12px; white-space:nowrap; }
+.link { background:none; border:0; color:var(--blue); font-size:15px; text-decoration:underline; padding:8px 0; }
+.link.red { color:var(--red); }
+.busy { position:fixed; inset:0; background:rgba(11,79,138,.85); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; z-index:50; text-align:center; padding:30px; }
+.hidden { display:none !important; }
+.langs { display:flex; gap:2px; background:rgba(255,255,255,.15); border-radius:8px; padding:2px; }
+header.bar .langs button.lang { background:none; padding:6px 8px; font-size:13px; font-weight:700; opacity:.65; }
+header.bar .langs button.lang.on { background:#fff; color:var(--blue); opacity:1; }
+a.nav { display:block; text-align:center; text-decoration:none; background:#eef3f8; color:var(--blue); font-weight:700; border-radius:10px; padding:12px 4px; font-size:14px; border:1px solid var(--line); white-space:nowrap; }
+.row:has(> a.nav) { gap:6px; }
+.card.acces { border-left:5px solid #d68910; }
+.acces-t { font-weight:800; margin-bottom:6px; }
+.acces-txt { white-space:pre-line; font-size:15px; line-height:1.45; }
+.note { margin-top:10px; background:#fdf2e3; color:#8a5a1e; border-radius:8px; padding:8px 10px; font-size:14px; font-weight:600; }
+.site .note { margin-top:4px; padding:2px 6px; font-size:12px; display:inline-block; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<input id="cam" type="file" accept="image/*" capture="environment" class="hidden">
+<div id="busy" class="busy hidden"></div>
+
+<script>
+/* ============================================================
+   CR Installation électrique Juniper – appli terrain
+   - Planning des sites, parcours photo guidé, PDF généré sur place
+   - Données : localStorage (sites) + IndexedDB (photos)
+   ============================================================ */
+
+// Données des sites : chiffrées, injectées par build.js (déchiffrées après connexion)
+const SEC = {"iter":310000,"data":{"iv":"Q29ZfaRgCEFqHD7C","ct":"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"},"users":{"EHBaYNW66d+Ro+gDTQ2Xd+":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"t47HnStrUsTedR0h","wk":"YNzbKqSfXs+tFer8J6yw0TN+SudhF9XRzFFR4g/qPfwgTHBVr/mktC0QX7usQJA4"},"GRdKWoju+9j6IQ1SKIBXX5":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"LqdaRLBxKUPgEw5k","wk":"Clx/VY5Rfr+0SshVim9E4f2rQzTZfm8lUguq3neh0loB1JK3FWK8Xhrhgf1cvyt8"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"X3rcHVdLE7efdOLo","wk":"qawMrFPrxgjvf+UlT4NPrWD+s6sWIvdaODfXrK5amYPcecRRdY6j9GqIHzXUJ46S"}}};
+const BUILD = '2026-11-25 03:05';
+
+// Parcours : 2 photos avant, intervention, 6 photos après, fin
+// cap = légende dans le PDF (toujours en français)
+const STEPS = [
+  { k:'av_face', ph:'avant', cap:'Face avant' },
+  { k:'av_arr',  ph:'avant', cap:'Face arrière' },
+  { k:'inter',   ph:'inter' },
+  { k:'ap_zoom',      ph:'apres', cap:'Raccordement électrique (zoom)' },
+  { k:'ap_lovage',    ph:'apres', cap:'Lovage des câbles électriques' },
+  { k:'ap_face_ouv',  ph:'apres', cap:'Face – porte ouverte' },
+  { k:'ap_face_ferm', ph:'apres', cap:'Face – porte fermée' },
+  { k:'ap_arr_ouv',   ph:'apres', cap:'Arrière – porte ouverte' },
+  { k:'ap_arr_ferm',  ph:'apres', cap:'Arrière – porte fermée' },
+  { k:'fin', ph:'fin' },
+];
+const PHOTO_STEPS = STEPS.filter(s => s.cap);
+const STEP = Object.fromEntries(STEPS.map(s => [s.k, s]));
+
+// Textes PDF (français) des motifs « non fait »
+const MOTIFS = {
+  acces:   { motif:'Accès NOK – accès au site impossible', constat:"Constat d'accès", leg:'Accès NOK – accès au site impossible' },
+  juniper: { motif:'Switch Juniper absent de la baie – raccordement électrique impossible', constat:'Constat dans la baie', leg:'Baie ouverte – absence du switch Juniper' },
+  autre:   { motif:'', constat:'Constat sur site', leg:'Constat sur site' },
+};
+// Cause précise d'un accès NOK : alimente la légende de la photo (PDF, français)
+const CAUSES_ACCES = {
+  badge:   { leg:'Accès NOK – badgeuse rouge, badge refusé' },
+  portail: { leg:'Accès NOK – portail ne s\'ouvrant pas' },
+  serrure: { leg:'Accès NOK – serrure ou clé ne fonctionnant pas' },
+  autre:   { leg:'Accès NOK – ' },
+};
+
+/* ---------------- Langues de l'interface (le PDF reste en français) ---------------- */
+const I18N = {
+  fr: {
+    app:'CR Installation électrique Juniper', back:'← Retour', planning:'Planning du {0}', nodate:'Sans date', addSite:'+ Ajouter un site',
+    st_todo:'À faire', st_progress:'En cours', st_done:'Fait', st_nok:'Non fait', repasse:'Repasse',
+    f_title:'Ajouter un site', f_nro:'Code site (NRO / NRA) *', f_adr:'Adresse', f_cp:'Code postal', f_ville:'Ville', f_date:'Date prévue', f_add:'Ajouter au planning',
+    e_nro:'Le code site est obligatoire.', e_dup:'Ce site est déjà dans le planning.',
+    i_site:'Site', i_adr:'Adresse', i_date:'Date prévue', i_inter:'Intervention', i_motif:'Motif',
+    acces:'🔑 Accès au site', acces_none:'Pas de consigne d\'accès particulière renseignée.', acces_lang:'',
+    seeCR:'Voir / envoyer le compte rendu', editPhotos:'Modifier les photos',
+    parcours:'Parcours : 2 photos <b>avant</b> (face, arrière) → intervention → 6 photos <b>après</b>. Le compte rendu PDF est généré à la fin.',
+    reset:'Réinitialiser ce site', resetQ:'Effacer toutes les photos et le statut de ce site ?', start:'▶ Commencer', impossible:'Intervention impossible (non fait)',
+    stepHead:'{0} – étape {1}/{2}', prev:'◀ Précédent', ph_inter:'INTERVENTION', inter_t:'Raccordement électrique du Juniper',
+    inter_txt:'Les 2 photos <b>avant</b> sont prises.<br><br>Réalise l\'intervention, puis appuie sur <b>« Intervention terminée »</b> pour passer aux 6 photos après.',
+    inter_done:'Intervention terminée ✓', ph_avant:'AVANT', ph_apres:'APRÈS', photoN:'photo {0}/8', retake:'Reprendre la photo', next:'Suivant ▶', take:'📷 Prendre la photo',
+    saving:'Enregistrement de la photo…', badPhoto:'Photo illisible : ',
+    recapHead:'{0} – récapitulatif', recapT:'Vérification des 8 photos', recapHint:'Touchez une photo pour la reprendre.', missing:'{0} photo(s) manquante(s).', generate:'Générer le compte rendu',
+    nokHead:'{0} – non réalisé', ph_nok:'NON FAIT', nokT:'Intervention impossible', motif:'Motif', motifAutre:'Précisez le motif', cause:'Cause constatée', choose:'— Choisir —',
+    legende:'Légende de la photo', legNote:'', cancelNok:'Annuler (revenir au site)', e_motif:'Précisez le motif.',
+    crHead:'{0} – compte rendu', pages:'{0} page(s)', backSite:'Retour au site', download:'Télécharger', share:'Partager', pdfLang:'',
+    generating:'Génération du compte rendu…', genErr:'Erreur lors de la génération : ', noShare:'Le partage direct n\'est pas disponible ici : le PDF va être téléchargé.',
+    login_t:'Connexion', login_user:'Identifiant', login_pw:'Mot de passe', login_btn:'Se connecter', login_wait:'Vérification…',
+    login_err:'Identifiant ou mot de passe incorrect.', login_exp:'Votre accès a été mis à jour : reconnectez-vous.', login_hint:'Identifiants fournis par votre responsable.',
+    logout:'Se déconnecter', logoutQ:'Se déconnecter ? Les photos déjà prises restent sur le téléphone.', connected:'Connecté : {0}',
+    inst_btn:'📲 Installer l\'appli', inst_ios:'📲 <b>Installer l\'appli</b> : touchez <b>Partager</b> (carré avec flèche ⬆️) puis <b>« Sur l\'écran d\'accueil »</b>.',
+    inst_other:'📲 Pour installer : menu du navigateur ⋮ puis <b>« Installer l\'application »</b> ou <b>« Ajouter à l\'écran d\'accueil »</b>.',
+    'm.acces':'Accès NOK', 'm.juniper':'Switch Juniper absent de la baie', 'm.autre':'Autre motif',
+    'mh.acces':'Photo montrant le blocage (badgeuse, portail, serrure…).', 'mh.juniper':'Photo de la baie ouverte montrant l\'emplacement vide.', 'mh.autre':'Photo illustrant le problème.',
+    'c.badge':'Badgeuse rouge / badge refusé', 'c.portail':'Portail qui ne s\'ouvre pas', 'c.serrure':'Serrure / clé ne fonctionne pas', 'c.autre':'Autre (préciser dans la légende)',
+    's.av_face':'Face avant', 'h.av_face':'Baie ouverte, vue de face, AVANT toute intervention. Prendre toute la baie.',
+    's.av_arr':'Face arrière', 'h.av_arr':'Baie ouverte, vue arrière, AVANT toute intervention. Prendre toute la baie.',
+    's.ap_zoom':'Raccordement électrique (zoom)', 'h.ap_zoom':'Gros plan sur les alimentations du Juniper, repères V1 / V2 lisibles.',
+    's.ap_lovage':'Lovage des câbles électriques', 'h.ap_lovage':'Cheminement et lovage des câbles dans la baie.',
+    's.ap_face_ouv':'Face avant – porte ouverte', 'h.ap_face_ouv':'Même cadrage que la photo AVANT de face.',
+    's.ap_face_ferm':'Face avant – porte fermée', 'h.ap_face_ferm':'Refermer la porte avant, même cadrage.',
+    's.ap_arr_ouv':'Face arrière – porte ouverte', 'h.ap_arr_ouv':'Même cadrage que la photo AVANT arrière.',
+    's.ap_arr_ferm':'Face arrière – porte fermée', 'h.ap_arr_ferm':'Refermer la porte arrière, même cadrage.',
+  },
+  sq: {
+    app:'Raport – Instalim elektrik Juniper', back:'← Kthehu', planning:'Plani i {0}', nodate:'Pa datë', addSite:'+ Shto një objekt',
+    st_todo:'Për t\'u bërë', st_progress:'Në proces', st_done:'Kryer', st_nok:'Pa kryer', repasse:'Rikthim',
+    f_title:'Shto një objekt', f_nro:'Kodi i objektit (NRO / NRA) *', f_adr:'Adresa', f_cp:'Kodi postar', f_ville:'Qyteti', f_date:'Data e planifikuar', f_add:'Shto në plan',
+    e_nro:'Kodi i objektit është i detyrueshëm.', e_dup:'Ky objekt është tashmë në plan.',
+    i_site:'Objekti', i_adr:'Adresa', i_date:'Data e planifikuar', i_inter:'Ndërhyrja', i_motif:'Arsyeja',
+    acces:'🔑 Hyrja në objekt', acces_none:'Nuk ka udhëzime të veçanta për hyrjen.', acces_lang:'(udhëzimet janë në frëngjisht)',
+    seeCR:'Shiko / dërgo raportin', editPhotos:'Ndrysho fotot',
+    parcours:'Procedura: 2 foto <b>para</b> (përpara, mbrapa) → ndërhyrja → 6 foto <b>pas</b>. Raporti PDF krijohet në fund.',
+    reset:'Rivendos këtë objekt', resetQ:'Të fshihen të gjitha fotot dhe statusi i këtij objekti?', start:'▶ Fillo', impossible:'Ndërhyrja e pamundur (pa kryer)',
+    stepHead:'{0} – hapi {1}/{2}', prev:'◀ Mbrapa', ph_inter:'NDËRHYRJA', inter_t:'Lidhja elektrike e Juniper',
+    inter_txt:'2 fotot <b>para</b> janë bërë.<br><br>Kryej ndërhyrjen, pastaj shtyp <b>« Ndërhyrja përfundoi »</b> për të kaluar te 6 fotot pas.',
+    inter_done:'Ndërhyrja përfundoi ✓', ph_avant:'PARA', ph_apres:'PAS', photoN:'foto {0}/8', retake:'Bëje përsëri foton', next:'Vazhdo ▶', take:'📷 Bëj foton',
+    saving:'Duke ruajtur foton…', badPhoto:'Foto e palexueshme: ',
+    recapHead:'{0} – përmbledhje', recapT:'Kontrolli i 8 fotove', recapHint:'Prek një foto për ta bërë përsëri.', missing:'Mungojnë {0} foto.', generate:'Krijo raportin',
+    nokHead:'{0} – pa kryer', ph_nok:'PA KRYER', nokT:'Ndërhyrja e pamundur', motif:'Arsyeja', motifAutre:'Saktëso arsyen (në frëngjisht, për PDF-në)', cause:'Shkaku i konstatuar', choose:'— Zgjidh —',
+    legende:'Përshkrimi i fotos', legNote:'(teksti i PDF-së, në frëngjisht)', cancelNok:'Anulo (kthehu te objekti)', e_motif:'Saktëso arsyen.',
+    crHead:'{0} – raporti', pages:'{0} faqe', backSite:'Kthehu te objekti', download:'Shkarko', share:'Ndaj', pdfLang:'Raporti PDF është në frëngjisht.',
+    generating:'Duke krijuar raportin…', genErr:'Gabim gjatë krijimit: ', noShare:'Ndarja e drejtpërdrejtë nuk është e disponueshme këtu: PDF-ja do të shkarkohet.',
+    login_t:'Hyrja', login_user:'Përdoruesi', login_pw:'Fjalëkalimi', login_btn:'Hyr', login_wait:'Duke verifikuar…',
+    login_err:'Përdoruesi ose fjalëkalimi i gabuar.', login_exp:'Qasja juaj u përditësua: hyni përsëri.', login_hint:'Të dhënat e hyrjes jepen nga përgjegjësi juaj.',
+    logout:'Dil', logoutQ:'Të dilni? Fotot e bëra mbeten në telefon.', connected:'I lidhur: {0}',
+    inst_btn:'📲 Instalo aplikacionin', inst_ios:'📲 <b>Instalo aplikacionin</b>: prek <b>Ndaj</b> (katrori me shigjetë ⬆️) pastaj <b>« Shto në ekranin bazë »</b>.',
+    inst_other:'📲 Për ta instaluar: menyja e shfletuesit ⋮ pastaj <b>« Instalo aplikacionin »</b> ose <b>« Shto në ekranin bazë »</b>.',
+    'm.acces':'Hyrja NOK', 'm.juniper':'Switch-i Juniper mungon në raft', 'm.autre':'Arsye tjetër',
+    'mh.acces':'Foto që tregon bllokimin (lexuesi i kartës, porta, brava…).', 'mh.juniper':'Foto e raftit të hapur ku duket vendi bosh.', 'mh.autre':'Foto që tregon problemin.',
+    'c.badge':'Lexuesi i kartës i kuq / karta refuzohet', 'c.portail':'Porta nuk hapet', 'c.serrure':'Brava / çelësi nuk funksionon', 'c.autre':'Tjetër (saktëso në përshkrim)',
+    's.av_face':'Pamja e përparme', 'h.av_face':'Raft i hapur, pamja nga përpara, PARA çdo ndërhyrjeje. Fotografo gjithë raftin.',
+    's.av_arr':'Pamja e pasme', 'h.av_arr':'Raft i hapur, pamja nga mbrapa, PARA çdo ndërhyrjeje. Fotografo gjithë raftin.',
+    's.ap_zoom':'Lidhja elektrike (zmadhim)', 'h.ap_zoom':'Plan i afërt i ushqyesve të Juniper, shenjat V1 / V2 të lexueshme.',
+    's.ap_lovage':'Rregullimi i kabllove elektrike', 'h.ap_lovage':'Kalimi dhe rregullimi i kabllove në raft.',
+    's.ap_face_ouv':'Pamja e përparme – derë e hapur', 'h.ap_face_ouv':'I njëjti kënd si fotoja PARA nga përpara.',
+    's.ap_face_ferm':'Pamja e përparme – derë e mbyllur', 'h.ap_face_ferm':'Mbyll derën e përparme, i njëjti kënd.',
+    's.ap_arr_ouv':'Pamja e pasme – derë e hapur', 'h.ap_arr_ouv':'I njëjti kënd si fotoja PARA nga mbrapa.',
+    's.ap_arr_ferm':'Pamja e pasme – derë e mbyllur', 'h.ap_arr_ferm':'Mbyll derën e pasme, i njëjti kënd.',
+  },
+};
+let LANG = localStorage.getItem('crj_lang') || 'fr';
+const t = (k, ...a) => { let s = I18N[LANG][k] ?? I18N.fr[k] ?? k; a.forEach((v, i) => { s = s.replace('{' + i + '}', v); }); return s; };
+let rerender = () => renderPlanning();
+function setLang(l) { LANG = l; localStorage.setItem('crj_lang', l); document.documentElement.lang = l; rerender(); }
+document.documentElement.lang = LANG;
+
+/* ---------------- Stockage ---------------- */
+const LS_KEY = 'crj_sites_v1';
+let sites = JSON.parse(localStorage.getItem(LS_KEY) || 'null') || [];
+// Fusion du planning déchiffré : met à jour adresses / GPS / accès sans perdre l'avancement
+function applyPlanning(list) {
+  list.forEach((p, i) => {
+    const ex = sites.find(s => s.nro === p.nro);
+    if (ex) Object.assign(ex, p, { datePlan: ex.datePlan || p.datePlan });
+    else sites.splice(Math.min(i, sites.length), 0, { ...p, status:'todo', step:0 });
+  });
+  save();
+}
+const save = () => localStorage.setItem(LS_KEY, JSON.stringify(sites));
+
+let dbP = null;
+function db() {
+  if (!dbP) dbP = new Promise((res, rej) => {
+    const r = indexedDB.open('crj_photos', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('p');
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+  });
+  return dbP;
+}
+async function idb(mode, fn) {
+  const d = await db();
+  return new Promise((res, rej) => { const tx = d.transaction('p', mode); const req = fn(tx.objectStore('p')); tx.oncomplete = () => res(req && req.result); tx.onerror = () => rej(tx.error); });
+}
+const putPhoto = (nro, k, blob) => idb('readwrite', s => s.put(blob, nro + ':' + k));
+const getPhoto = (nro, k) => idb('readonly', s => s.get(nro + ':' + k));
+const delPhoto = (nro, k) => idb('readwrite', s => s.delete(nro + ':' + k));
+
+const urlCache = {};
+async function photoURL(nro, k) {
+  const key = nro + ':' + k;
+  if (urlCache[key]) return urlCache[key];
+  const b = await getPhoto(nro, k);
+  if (!b) return null;
+  return (urlCache[key] = URL.createObjectURL(b));
+}
+function dropURL(nro, k) { const key = nro + ':' + k; if (urlCache[key]) { URL.revokeObjectURL(urlCache[key]); delete urlCache[key]; } }
+
+/* ---------------- Utilitaires ---------------- */
+const $app = document.getElementById('app');
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+const today = () => { const d = new Date(); return [d.getDate(), d.getMonth() + 1].map(n => String(n).padStart(2, '0')).join('/') + '/' + d.getFullYear(); };
+const siteBy = nro => sites.find(s => s.nro === nro);
+const gpsClean = g => String(g || '').replace(/\s+/g, '');
+const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const pillHTML = s => `<span class="pill p-${s.status}">${t('st_' + s.status)}</span>`;
+const loc = v => v && typeof v === 'object' ? (v[LANG] || v.fr || '') : (v || '');
+const noteTxt = s => s.note ? (typeof s.note === 'object' ? (s.note[LANG] || s.note.fr) : s.note) : '';
+function busy(msg) { const b = document.getElementById('busy'); b.textContent = msg || ''; b.classList.toggle('hidden', !msg); }
+
+// Prise de photo : ouvre l'appareil, réduit à 1600 px, stocke en JPEG
+function takePhoto() {
+  return new Promise(resolve => {
+    const inp = document.getElementById('cam');
+    inp.value = '';
+    inp.onchange = async () => {
+      const f = inp.files && inp.files[0];
+      if (!f) return resolve(null);
+      busy(t('saving'));
+      try { resolve(await shrink(f, 1600, 0.85)); } catch (e) { alert(t('badPhoto') + e.message); resolve(null); } finally { busy(''); }
+    };
+    inp.click();
+  });
+}
+async function loadImage(blob) {
+  if (window.createImageBitmap) { try { return await createImageBitmap(blob, { imageOrientation:'from-image' }); } catch (e) {} }
+  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error('format')); i.src = URL.createObjectURL(blob); });
+}
+async function shrink(file, max, q) {
+  const img = await loadImage(file);
+  const r = Math.min(1, max / Math.max(img.width, img.height));
+  const c = document.createElement('canvas'); c.width = Math.round(img.width * r); c.height = Math.round(img.height * r);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  return new Promise(res => c.toBlob(res, 'image/jpeg', q));
+}
+
+/* ---------------- Écrans ---------------- */
+let current = null; // nro du site ouvert
+
+function bar(title, back) {
+  const lg = ['fr', 'sq'].map(l => `<button class="lang ${l === LANG ? 'on' : ''}" onclick="setLang('${l}')">${l.toUpperCase()}</button>`).join('');
+  return `<header class="bar">${back ? `<button onclick="${back}">${t('back')}</button>` : ''}<h1>${title}</h1><div class="langs">${lg}</div></header>`;
+}
+
+function renderPlanning() {
+  current = null; rerender = renderPlanning;
+  const groups = {};
+  sites.forEach(s => (groups[s.datePlan || t('nodate')] ||= []).push(s));
+  $app.innerHTML = bar(t('app')) + `<main>
+    ${Object.entries(groups).map(([d, list]) => `<h2>${t('planning', esc(d))}</h2>` + list.map(s => `
+      <div class="card site" onclick="openSite('${esc(s.nro)}')">
+        <div class="nro">${esc(s.nro)}</div>
+        <div class="addr">${esc(s.adresse)}<br>${esc(s.cp)} ${esc(s.ville)}${s.note ? `<br><span class="note">${t('repasse')}</span>` : ''}</div>
+        ${pillHTML(s)}
+      </div>`).join('')).join('')}
+    <button class="btn ghost" onclick="renderAddSite()">${t('addSite')}</button>
+    ${installCard()}
+    <div style="margin-top:22px;text-align:center" class="muted">${t('connected', esc(session.login))} · <button class="link" onclick="logout()">${t('logout')}</button></div>
+  </main>`;
+  scrollTo(0, 0);
+}
+
+function renderAddSite() {
+  rerender = renderAddSite;
+  $app.innerHTML = bar(t('f_title'), 'renderPlanning()') + `<main>
+    <div class="card">
+      <label>${t('f_nro')}</label><input type="text" id="f_nro" placeholder="ex. ABC91" autocapitalize="characters">
+      <label>${t('f_adr')}</label><input type="text" id="f_adr">
+      <div class="row"><div><label>${t('f_cp')}</label><input type="text" id="f_cp" inputmode="numeric"></div><div><label>${t('f_ville')}</label><input type="text" id="f_ville" autocapitalize="characters"></div></div>
+      <label>${t('f_date')}</label><input type="text" id="f_date" value="${today()}">
+    </div>
+    <button class="btn" onclick="addSite()">${t('f_add')}</button>
+  </main>`;
+}
+function addSite() {
+  const v = id => document.getElementById(id).value.trim();
+  const nro = v('f_nro').toUpperCase();
+  if (!nro) return alert(t('e_nro'));
+  if (siteBy(nro)) return alert(t('e_dup'));
+  sites.push({ nro, adresse:v('f_adr'), cp:v('f_cp'), ville:v('f_ville').toUpperCase(), datePlan:v('f_date'), status:'todo', step:0, local:true });
+  save(); renderPlanning();
+}
+
+function openSite(nro) { current = nro; renderSite(); }
+
+async function renderSite() {
+  rerender = renderSite;
+  const s = siteBy(current);
+  if (s.status === 'progress') return renderStep();
+  if (s.mode === 'nok' && s.status !== 'nok') return renderNok();
+  const done = s.status === 'done' || s.status === 'nok';
+  const g = encodeURIComponent(gpsClean(s.gps));
+  $app.innerHTML = bar(esc(s.nro), 'renderPlanning()') + `<main>
+    <div class="card">
+      <table class="info">
+        <tr><td>${t('i_site')}</td><td><b>${esc(s.nro)}</b> ${pillHTML(s)}</td></tr>
+        <tr><td>${t('i_adr')}</td><td>${esc(s.adresse)}<br>${esc(s.cp)} ${esc(s.ville)}</td></tr>
+        <tr><td>${t('i_date')}</td><td>${esc(s.datePlan || '–')}</td></tr>
+        ${s.dateInter ? `<tr><td>${t('i_inter')}</td><td>${esc(s.dateInter)}</td></tr>` : ''}
+        ${s.status === 'nok' ? `<tr><td>${t('i_motif')}</td><td style="color:var(--red);font-weight:600">${esc(s.motifTxt)}</td></tr>` : ''}
+      </table>
+      ${s.note ? `<div class="note">${esc(noteTxt(s))}</div>` : ''}
+      ${s.gps ? `<div class="row" style="margin-top:12px">
+        <a class="nav" href="https://waze.com/ul?ll=${g}&navigate=yes" target="_blank" rel="noopener">🚗 Waze</a>
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=${g}" target="_blank" rel="noopener">🗺️ Google Maps</a>
+        ${IS_IOS ? `<a class="nav" href="https://maps.apple.com/?daddr=${g}&dirflg=d" target="_blank" rel="noopener">🧭 Plans</a>` : ''}
+      </div><div class="muted" style="margin-top:6px;font-size:12px">GPS : ${esc(gpsClean(s.gps))}</div>` : ''}
+    </div>
+    <div class="card acces">
+      <div class="acces-t">${t('acces')}</div>
+      ${loc(s.acces) ? `<div class="acces-txt">${esc(loc(s.acces))}</div>`
+                : `<div class="muted">${t('acces_none')}</div>`}
+    </div>
+    ${done ? `
+      <button class="btn green" onclick="renderCR()">${t('seeCR')}</button>
+      <button class="btn ghost" onclick="${s.status === 'nok' ? 'reopenNok()' : 'reopen()'}">${t('editPhotos')}</button>
+    ` : `<div class="card muted">${t('parcours')}</div>`}
+    <div style="margin-top:22px;text-align:center">
+      <button class="link red" onclick="resetSite()">${t('reset')}</button>
+    </div>
+  </main>
+  ${done ? '' : `<div class="footer"><div class="inner">
+    <button class="btn green" onclick="startSite()">${t('start')}</button>
+    <button class="btn red" style="margin-top:8px;padding:12px;font-size:15px" onclick="startNok()">${t('impossible')}</button>
+  </div></div>`}`;
+}
+
+function startSite() {
+  const s = siteBy(current);
+  s.status = 'progress'; s.mode = 'ok'; s.step = 0; s.dateInter = today();
+  save(); renderStep();
+}
+function reopen() { const s = siteBy(current); s.status = 'progress'; s.step = STEPS.length - 1; save(); renderStep(); }
+async function resetSite() {
+  if (!confirm(t('resetQ'))) return;
+  const s = siteBy(current);
+  for (const st of [...PHOTO_STEPS.map(p => p.k), 'nok']) { dropURL(s.nro, st); await delPhoto(s.nro, st); }
+  Object.assign(s, { status:'todo', step:0, mode:null, dateInter:null, motif:null, cause:null, motifTxt:null, motifAutre:null, legende:null });
+  save(); renderSite();
+}
+
+async function renderStep() {
+  rerender = renderStep;
+  const s = siteBy(current);
+  const st = STEPS[s.step];
+  const pct = Math.round(100 * s.step / (STEPS.length - 1));
+  const head = bar(t('stepHead', esc(s.nro), s.step + 1, STEPS.length), 'renderPlanning()');
+  const prev = s.step > 0 ? `<button class="btn ghost" style="padding:12px;font-size:15px" onclick="goStep(${s.step - 1})">${t('prev')}</button>` : '';
+
+  if (st.ph === 'inter') {
+    $app.innerHTML = head + `<main>
+      <div class="progress"><div style="width:${pct}%"></div></div>
+      <span class="phase ph-inter">${t('ph_inter')}</span>
+      <div class="step-title">${t('inter_t')}</div>
+      <div class="card">${t('inter_txt')}</div>
+      ${prev}
+    </main>
+    <div class="footer"><div class="inner"><button class="btn green" onclick="goStep(${s.step + 1})">${t('inter_done')}</button></div></div>`;
+    return;
+  }
+  if (st.ph === 'fin') return renderFin();
+
+  const url = await photoURL(s.nro, st.k);
+  const n = PHOTO_STEPS.indexOf(st) + 1;
+  $app.innerHTML = head + `<main>
+    <div class="progress"><div style="width:${pct}%"></div></div>
+    <span class="phase ph-${st.ph}">${t(st.ph === 'avant' ? 'ph_avant' : 'ph_apres')} · ${t('photoN', n)}</span>
+    <div class="step-title">${t('s.' + st.k)}</div>
+    <div class="muted">${t('h.' + st.k)}</div>
+    <div class="photo-box" onclick="shoot('${st.k}')">${url ? `<img src="${url}">` : '<div class="muted" style="font-size:48px">📷</div>'}</div>
+    ${url ? `<button class="btn ghost" onclick="shoot('${st.k}')">${t('retake')}</button>` : ''}
+    ${prev}
+  </main>
+  <div class="footer"><div class="inner">
+    ${url ? `<button class="btn green" onclick="goStep(${s.step + 1})">${t('next')}</button>`
+          : `<button class="btn" onclick="shoot('${st.k}')">${t('take')}</button>`}
+  </div></div>`;
+  scrollTo(0, 0);
+}
+function goStep(i) { const s = siteBy(current); s.step = i; save(); renderStep(); }
+async function shoot(k) {
+  const blob = await takePhoto();
+  if (!blob) return;
+  const s = siteBy(current);
+  dropURL(s.nro, k); await putPhoto(s.nro, k, blob);
+  renderStep();
+}
+
+async function renderFin() {
+  rerender = renderStep;
+  const s = siteBy(current);
+  const urls = await Promise.all(PHOTO_STEPS.map(p => photoURL(s.nro, p.k)));
+  const missing = urls.filter(u => !u).length;
+  $app.innerHTML = bar(t('recapHead', esc(s.nro)), 'renderPlanning()') + `<main>
+    <div class="progress"><div style="width:100%"></div></div>
+    <div class="step-title">${t('recapT')}</div>
+    <div class="muted" style="margin-bottom:12px">${t('recapHint')}</div>
+    <div class="thumbs">${PHOTO_STEPS.map((p, i) => `
+      <div class="thumb ${urls[i] ? '' : 'missing'}" onclick="goStep(${STEPS.indexOf(p)})">
+        ${urls[i] ? `<img src="${urls[i]}">` : ''}<span>${p.ph === 'avant' ? t('ph_avant') + ' · ' : ''}${t('s.' + p.k)}</span>
+      </div>`).join('')}</div>
+    ${missing ? `<div class="card" style="margin-top:12px;color:var(--red);font-weight:600">${t('missing', missing)}</div>` : ''}
+  </main>
+  <div class="footer"><div class="inner">
+    <button class="btn green" ${missing ? 'disabled' : ''} onclick="finish()">${t('generate')}</button>
+  </div></div>`;
+}
+function finish() { const s = siteBy(current); s.status = 'done'; save(); renderCR(); }
+
+/* ---- Non réalisé ---- */
+function startNok() {
+  const s = siteBy(current);
+  s.mode = 'nok'; s.dateInter = today(); s.motif = s.motif || 'acces';
+  save(); renderNok();
+}
+function reopenNok() { const s = siteBy(current); s.status = 'todo'; save(); renderNok(); }
+async function renderNok() {
+  rerender = renderNok;
+  const s = siteBy(current);
+  const m = MOTIFS[s.motif || 'acces'];
+  const url = await photoURL(s.nro, 'nok');
+  $app.innerHTML = bar(t('nokHead', esc(s.nro)), 'renderPlanning()') + `<main>
+    <span class="phase ph-nok">${t('ph_nok')}</span>
+    <div class="step-title">${t('nokT')}</div>
+    <div class="card">
+      <label>${t('motif')}</label>
+      <select id="n_motif" onchange="setMotif(this.value)">
+        ${Object.keys(MOTIFS).map(k => `<option value="${k}" ${k === s.motif ? 'selected' : ''}>${t('m.' + k)}</option>`).join('')}
+      </select>
+      ${s.motif === 'autre' ? `<label>${t('motifAutre')}</label><input type="text" id="n_txt" value="${esc(s.motifAutre || '')}" oninput="siteBy(current).motifAutre=this.value;save()">` : ''}
+      ${s.motif === 'acces' ? `<label>${t('cause')}</label>
+      <select id="n_cause" onchange="setCause(this.value)">
+        <option value="">${t('choose')}</option>
+        ${Object.keys(CAUSES_ACCES).map(k => `<option value="${k}" ${k === s.cause ? 'selected' : ''}>${t('c.' + k)}</option>`).join('')}
+      </select>` : ''}
+      <label>${t('legende')} <span class="muted" style="font-weight:400">${t('legNote')}</span></label>
+      <input type="text" id="n_leg" value="${esc(s.legende || m.leg)}" oninput="siteBy(current).legende=this.value;save()">
+    </div>
+    <div class="muted">${t('mh.' + (s.motif || 'acces'))}</div>
+    <div class="photo-box" onclick="shootNok()">${url ? `<img src="${url}">` : '<div class="muted" style="font-size:48px">📷</div>'}</div>
+    ${url ? `<button class="btn ghost" onclick="shootNok()">${t('retake')}</button>` : ''}
+    <div style="margin-top:14px;text-align:center"><button class="link" onclick="cancelNok()">${t('cancelNok')}</button></div>
+  </main>
+  <div class="footer"><div class="inner">
+    ${url ? `<button class="btn red" onclick="finishNok()">${t('generate')}</button>`
+          : `<button class="btn" onclick="shootNok()">${t('take')}</button>`}
+  </div></div>`;
+}
+function setMotif(k) { const s = siteBy(current); s.motif = k; s.cause = null; s.legende = null; save(); renderNok(); }
+async function setCause(k) {
+  const s = siteBy(current); s.cause = k || null; s.legende = k ? CAUSES_ACCES[k].leg : null; save(); await renderNok();
+  if (k === 'autre') { const i = document.getElementById('n_leg'); i.focus(); i.setSelectionRange(i.value.length, i.value.length); }
+}
+async function shootNok() {
+  const blob = await takePhoto(); if (!blob) return;
+  const s = siteBy(current); dropURL(s.nro, 'nok'); await putPhoto(s.nro, 'nok', blob); renderNok();
+}
+function cancelNok() { const s = siteBy(current); s.mode = null; save(); renderSite(); }
+function finishNok() {
+  const s = siteBy(current); const m = MOTIFS[s.motif];
+  const txt = s.motif === 'autre' ? (s.motifAutre || '').trim() : m.motif;
+  if (!txt) return alert(t('e_motif'));
+  s.motifTxt = txt; s.legende = (s.legende || m.leg).trim(); s.status = 'nok'; save(); renderCR();
+}
+
+/* ---- Compte rendu : aperçu + partage (PDF toujours en français) ---- */
+let lastPdf = null;
+async function renderCR() {
+  rerender = renderCR;
+  const s = siteBy(current);
+  busy(t('generating'));
+  try {
+    const pages = await buildPages(s);
+    lastPdf = { name: `${s.nro} - CR Installation électrique Juniper.pdf`, blob: await makePdf(pages) };
+    const imgs = pages.map(c => c.toDataURL('image/jpeg', 0.6));
+    $app.innerHTML = bar(t('crHead', esc(s.nro)), 'renderPlanning()') + `<main>
+      <div class="card"><b>${esc(lastPdf.name)}</b><div class="muted">${t('pages', pages.length)} · ${(lastPdf.blob.size / 1e6).toFixed(1)} Mo</div>
+        ${t('pdfLang') ? `<div class="muted" style="margin-top:4px">${t('pdfLang')}</div>` : ''}</div>
+      <div class="preview">${imgs.map(u => `<img src="${u}">`).join('')}</div>
+      <button class="btn ghost" onclick="openSite('${esc(s.nro)}')">${t('backSite')}</button>
+    </main>
+    <div class="footer"><div class="inner row">
+      <button class="btn ghost" onclick="downloadPdf()">${t('download')}</button>
+      <button class="btn green" onclick="sharePdf()">${t('share')}</button>
+    </div></div>`;
+    scrollTo(0, 0);
+  } catch (e) { alert(t('genErr') + e.message); console.error(e); }
+  finally { busy(''); }
+}
+function downloadPdf() {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(lastPdf.blob); a.download = lastPdf.name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+async function sharePdf() {
+  const file = new File([lastPdf.blob], lastPdf.name, { type:'application/pdf' });
+  if (navigator.canShare && navigator.canShare({ files:[file] })) {
+    try { await navigator.share({ files:[file], title:lastPdf.name }); } catch (e) { if (e.name !== 'AbortError') downloadPdf(); }
+  } else { alert(t('noShare')); downloadPdf(); }
+}
+
+/* ============================================================
+   Mise en page PDF (A4, 150 dpi) – identique aux CR existants
+   ============================================================ */
+const DPI = 150, MM = DPI / 25.4, PT = DPI / 72;
+const W = Math.round(210 * MM), H = Math.round(297 * MM);
+const C = { blue:'#0b4f8a', green:'#1e8a4c', red:'#c0392b', brown:'#8a5a1e', txt:'#1d2733', mut:'#5b6b7c', line:'#cfd8e2', soft:'#eef3f8', cap:'#36475a', motif:'#a12a1f' };
+const FONT = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+const mm = v => v * MM;
+const font = (size, weight = 400) => `${weight} ${size * PT}px ${FONT}`;
+
+function newPage() {
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, W, H); x.textBaseline = 'alphabetic';
+  return [c, x];
+}
+function rrect(x, X, Y, w, h, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); }
+
+const L = mm(12), R = W - mm(12), CW = R - L;
+
+function drawHeader(x, s, sub) {
+  let y = mm(12);
+  x.fillStyle = C.mut; x.font = font(8.5); x.fillText("COMPTE RENDU D'INTERVENTION", L, y + 8.5 * PT);
+  x.fillStyle = C.blue; x.font = font(17, 700); x.fillText('Installation électrique – Switch Juniper', L, y + 8.5 * PT + mm(1) + 17 * PT);
+  const hh = 8.5 * PT + mm(1) + 17 * PT + mm(1.5);
+  x.font = font(18, 700); const tw = x.measureText(s.nro).width;
+  const bw = tw + mm(10), bh = 18 * PT + mm(4);
+  x.fillStyle = C.blue; rrect(x, R - bw, y + (hh - bh) / 2, bw, bh, mm(2)); x.fill();
+  x.fillStyle = '#fff'; x.textBaseline = 'middle'; x.fillText(s.nro, R - bw + mm(5), y + hh / 2 + 1); x.textBaseline = 'alphabetic';
+  y += hh + mm(3);
+  x.fillStyle = C.blue; x.fillRect(L, y, CW, mm(0.8)); y += mm(0.8);
+  if (sub) { x.fillStyle = C.mut; x.font = font(9); x.fillText(sub, L, y + mm(1.5) + 9 * PT); y += mm(1.5) + 9 * PT + mm(1); }
+  return y;
+}
+
+function drawTable(x, y, s, statut, motif) {
+  y += mm(3.5);
+  const rh = mm(7), pad = mm(2.5);
+  x.font = font(9.5, 600);
+  const k1 = Math.max(...['Site (NRO)', 'Adresse', 'Prestation', 'Motif'].map(t => x.measureText(t).width)) + 2 * pad;
+  const k2 = x.measureText("Date d'intervention").width + 2 * pad;
+  x.font = font(9.5, 700);
+  const badgeW = x.measureText(statut.txt).width + mm(6);
+  x.font = font(9.5);
+  const v2 = Math.max(x.measureText(s.dateInter || '').width, badgeW) + 2 * pad;
+  const v1 = CW - k1 - k2 - v2;
+  const cols = [L, L + k1, L + k1 + v1, L + k1 + v1 + k2, R];
+  const rows = [
+    [['Site (NRO)', 'k'], [s.nro], ["Date d'intervention", 'k'], [s.dateInter || '']],
+    [['Adresse', 'k'], [`${s.adresse} – ${s.cp} ${s.ville}`.replace(/^ – /, '')], ['Statut', 'k'], [statut, 'badge']],
+    [['Prestation', 'k'], ['Raccordement électrique du switch Juniper dans la baie', 'span']],
+  ];
+  if (motif) rows.push([['Motif', 'k'], [motif, 'span motif']]);
+  rows.forEach((row, ri) => {
+    const ry = y + ri * rh;
+    let ci = 0;
+    row.forEach(([val, kind = '']) => {
+      const span = kind.includes('span') ? 3 : 1;
+      const cx = cols[ci], cw = cols[ci + span] - cx;
+      if (kind === 'k') { x.fillStyle = C.soft; x.fillRect(cx, ry, cw, rh); }
+      x.strokeStyle = C.line; x.lineWidth = 2; x.strokeRect(cx, ry, cw, rh);
+      x.textBaseline = 'middle';
+      if (kind === 'badge') {
+        x.font = font(9.5, 700); const bw = x.measureText(val.txt).width + mm(6), bh = mm(4.6);
+        x.fillStyle = val.color; rrect(x, cx + pad, ry + (rh - bh) / 2, bw, bh, mm(1)); x.fill();
+        x.fillStyle = '#fff'; x.fillText(val.txt, cx + pad + mm(3), ry + rh / 2 + 1);
+      } else {
+        x.font = font(9.5, kind === 'k' || kind.includes('motif') ? 600 : 400);
+        x.fillStyle = kind.includes('motif') ? C.motif : C.txt;
+        x.fillText(fit(x, String(val), cw - 2 * pad), cx + pad, ry + rh / 2 + 1);
+      }
+      x.textBaseline = 'alphabetic';
+      ci += span;
+    });
+  });
+  return y + rows.length * rh + mm(1);
+}
+function fit(x, t, w) { if (x.measureText(t).width <= w) return t; while (t.length > 1 && x.measureText(t + '…').width > w) t = t.slice(0, -1); return t + '…'; }
+
+function drawH2(x, y, txt, color) {
+  y += mm(3); const h = mm(7);
+  x.fillStyle = C.soft; x.fillRect(L, y, CW, h);
+  x.fillStyle = color; x.fillRect(L, y, mm(1.1), h);
+  x.fillStyle = C.txt; x.font = font(11, 700); x.textBaseline = 'middle'; x.fillText(txt, L + mm(3), y + h / 2 + 1); x.textBaseline = 'alphabetic';
+  return y + h + mm(2);
+}
+
+function drawImg(x, img, X, Y, w, h, mode) {
+  let sx = 0, sy = 0, sw = img.width, sh = img.height, dx = X, dy = Y, dw = w, dh = h;
+  if (mode === 'cover') {
+    const r = Math.max(w / sw, h / sh); const cw = w / r, ch = h / r; sx = (sw - cw) / 2; sy = (sh - ch) / 2; sw = cw; sh = ch;
+  } else { const r = Math.min(w / sw, h / sh); dw = sw * r; dh = sh * r; dx = X + (w - dw) / 2; dy = Y + (h - dh) / 2; }
+  x.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
+  x.strokeStyle = C.line; x.lineWidth = 2; x.strokeRect(dx, dy, dw, dh);
+  return { dx, dy, dw, dh };
+}
+function drawFig(x, img, X, Y, w, h, caption, tag, mode = 'cover') {
+  const r = drawImg(x, img, X, Y, w, h, mode);
+  if (tag) {
+    const txt = tag === 'av' ? 'AVANT' : 'APRÈS';
+    x.font = font(9.5, 700); const bw = x.measureText(txt).width + mm(6), bh = mm(5.2);
+    x.save(); x.shadowColor = 'rgba(0,0,0,.4)'; x.shadowBlur = mm(2);
+    x.fillStyle = tag === 'av' ? C.brown : C.green; rrect(x, r.dx + mm(2), r.dy + mm(2), bw, bh, mm(1)); x.fill(); x.restore();
+    x.fillStyle = '#fff'; x.textBaseline = 'middle'; x.fillText(txt, r.dx + mm(5), r.dy + mm(2) + bh / 2 + 1); x.textBaseline = 'alphabetic';
+  }
+  x.fillStyle = C.cap; x.font = font(9, 600); x.textAlign = 'center';
+  x.fillText(caption, X + w / 2, r.dy + r.dh + mm(0.8) + 9 * PT);
+  x.textAlign = 'left';
+  return r.dy + r.dh + mm(0.8) + 9 * PT + mm(1);
+}
+
+async function buildPages(s) {
+  const pages = [];
+  if (s.status === 'nok') {
+    const img = await loadImage(await getPhoto(s.nro, 'nok'));
+    const m = MOTIFS[s.motif] || MOTIFS.autre;
+    const [c, x] = newPage();
+    let y = drawHeader(x, s, '');
+    y = drawTable(x, y, s, { txt:'NON FAIT', color:C.red }, s.motifTxt);
+    y = drawH2(x, y, m.constat, C.red);
+    drawFig(x, img, L, y, CW, Math.min(mm(190), H - mm(12) - y - mm(6)), s.legende, null, 'contain');
+    pages.push(c);
+    return pages;
+  }
+  const im = {};
+  for (const p of PHOTO_STEPS) im[p.k] = await loadImage(await getPhoto(s.nro, p.k));
+  const colW = (CW - mm(5)) / 2;
+  const bigW = mm(72), bigH = mm(96);
+
+  // Page 1 : infos + face avant / face arrière, avant à gauche, après à droite
+  let [c, x] = newPage();
+  let y = drawHeader(x, s, '');
+  y = drawTable(x, y, s, { txt:'FAIT – OK', color:C.green });
+  for (const [titre, av, ap] of [['Face avant – avant / après', 'av_face', 'ap_face_ouv'], ['Face arrière – avant / après', 'av_arr', 'ap_arr_ouv']]) {
+    y = drawH2(x, y, titre, C.blue);
+    const y1 = drawFig(x, im[av], L + (colW - bigW) / 2, y, bigW, bigH, STEP[av].cap, 'av');
+    drawFig(x, im[ap], L + colW + mm(5) + (colW - bigW) / 2, y, bigW, bigH, STEP[ap].cap, 'ap');
+    y = y1;
+  }
+  pages.push(c);
+
+  // Page 2 : raccordement / lovage en haut, portes fermées en bas
+  [c, x] = newPage();
+  y = drawHeader(x, s, `${s.adresse} – ${s.cp} ${s.ville} · ${s.dateInter || ''}`);
+  y = drawH2(x, y, 'Autres vues après intervention', C.green);
+  const midH = mm(102);
+  for (const pair of [['ap_zoom', 'ap_lovage'], ['ap_face_ferm', 'ap_arr_ferm']]) {
+    const y1 = drawFig(x, im[pair[0]], L, y, colW, midH, STEP[pair[0]].cap);
+    drawFig(x, im[pair[1]], L + colW + mm(5), y, colW, midH, STEP[pair[1]].cap);
+    y = y1 + mm(3);
+  }
+  pages.push(c);
+  return pages;
+}
+
+/* ---- Écriture du fichier PDF (une image JPEG pleine page par page) ---- */
+async function makePdf(canvases) {
+  const enc = new TextEncoder(), parts = [], offs = []; let pos = 0;
+  const push = d => { const b = typeof d === 'string' ? enc.encode(d) : d; parts.push(b); pos += b.length; };
+  push('%PDF-1.4\n'); push(new Uint8Array([37, 226, 227, 207, 211, 10]));
+  const n = canvases.length, total = 2 + 3 * n;
+  const obj = (id, body) => { offs[id] = pos; push(`${id} 0 obj\n`); body(); push('\nendobj\n'); };
+  obj(1, () => push('<< /Type /Catalog /Pages 2 0 R >>'));
+  obj(2, () => push(`<< /Type /Pages /Count ${n} /Kids [${canvases.map((_, i) => `${3 + 3 * i} 0 R`).join(' ')}] >>`));
+  for (let i = 0; i < n; i++) {
+    const cv = canvases[i];
+    const jpg = new Uint8Array(await (await new Promise(r => cv.toBlob(r, 'image/jpeg', 0.85))).arrayBuffer());
+    const pid = 3 + 3 * i, cid = pid + 1, iid = pid + 2;
+    const content = 'q 595.28 0 0 841.89 0 0 cm /Im0 Do Q';
+    obj(pid, () => push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 ${iid} 0 R >> >> /Contents ${cid} 0 R >>`));
+    obj(cid, () => push(`<< /Length ${content.length} >>\nstream\n${content}\nendstream`));
+    obj(iid, () => { push(`<< /Type /XObject /Subtype /Image /Width ${cv.width} /Height ${cv.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpg.length} >>\nstream\n`); push(jpg); push('\nendstream'); });
+  }
+  const xref = pos;
+  push(`xref\n0 ${total + 1}\n0000000000 65535 f \n`);
+  for (let i = 1; i <= total; i++) push(String(offs[i]).padStart(10, '0') + ' 00000 n \n');
+  push(`trailer\n<< /Size ${total + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`);
+  return new Blob(parts, { type:'application/pdf' });
+}
+
+/* ============================================================
+   Connexion : les données des sites sont chiffrées (AES-GCM).
+   Chaque compte possède une clé dérivée de son mot de passe (PBKDF2)
+   qui déverrouille la clé des données. La clé du compte est mémorisée
+   sur le téléphone : on ne se reconnecte que si l'accès change.
+   ============================================================ */
+const SESS_KEY = 'crj_session_v1';
+let session = null;
+const b64d = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const b64e = u => btoa(String.fromCharCode(...new Uint8Array(u)));
+const subtle = () => { if (!window.crypto || !crypto.subtle) throw new Error('crypto'); return crypto.subtle; };
+
+async function userId(login) {
+  const d = await subtle().digest('SHA-256', new TextEncoder().encode('crj:' + login.trim().toLowerCase()));
+  return b64e(d).slice(0, 22);
+}
+async function deriveKek(password, saltB64) {
+  const base = await subtle().importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+  return subtle().deriveBits({ name:'PBKDF2', hash:'SHA-256', salt:b64d(saltB64), iterations:SEC.iter }, base, 256);
+}
+async function openData(id, kekRaw) {
+  const u = SEC.users[id];
+  if (!u) throw new Error('compte');
+  const kek = await subtle().importKey('raw', kekRaw, 'AES-GCM', false, ['decrypt']);
+  const dk = await subtle().decrypt({ name:'AES-GCM', iv:b64d(u.iv) }, kek, b64d(u.wk));
+  const key = await subtle().importKey('raw', dk, 'AES-GCM', false, ['decrypt']);
+  const pt = await subtle().decrypt({ name:'AES-GCM', iv:b64d(SEC.data.iv) }, key, b64d(SEC.data.ct));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+async function init() {
+  registerSW();
+  const saved = JSON.parse(localStorage.getItem(SESS_KEY) || 'null');
+  if (saved && SEC) {
+    try {
+      const data = await openData(saved.id, b64d(saved.kek));
+      session = saved; applyPlanning(data.sites); return renderPlanning();
+    } catch (e) { localStorage.removeItem(SESS_KEY); return renderLogin('login_exp'); }
+  }
+  renderLogin();
+}
+
+function renderLogin(msg) {
+  rerender = () => renderLogin(msg);
+  $app.innerHTML = bar(t('app')) + `<main>
+    <div class="card" style="margin-top:20px">
+      <div class="step-title" style="margin-bottom:12px">${t('login_t')}</div>
+      ${msg ? `<div class="note" style="margin-bottom:8px">${esc(t(msg))}</div>` : ''}
+      <form onsubmit="event.preventDefault();doLogin()">
+        <label>${t('login_user')}</label><input type="text" id="l_user" autocapitalize="none" autocorrect="off" autocomplete="username" spellcheck="false">
+        <label>${t('login_pw')}</label><input type="password" id="l_pw" autocomplete="current-password">
+        <div id="l_err" style="color:var(--red);font-weight:600;margin-top:10px"></div>
+        <button class="btn" id="l_btn" type="submit">${t('login_btn')}</button>
+      </form>
+      <div class="muted" style="margin-top:10px">${t('login_hint')}</div>
+    </div>
+    ${installCard()}
+  </main>`;
+}
+async function doLogin() {
+  const login = document.getElementById('l_user').value.trim();
+  const pw = document.getElementById('l_pw').value;
+  const err = document.getElementById('l_err'), btn = document.getElementById('l_btn');
+  err.textContent = ''; btn.disabled = true; btn.textContent = t('login_wait');
+  try {
+    if (!SEC) throw new Error('data');
+    const id = await userId(login);
+    const u = SEC.users[id];
+    if (!u || !pw) throw new Error('compte');
+    const kekRaw = await deriveKek(pw, u.salt);
+    const data = await openData(id, kekRaw);
+    session = { id, login, kek: b64e(kekRaw) };
+    localStorage.setItem(SESS_KEY, JSON.stringify(session));
+    applyPlanning(data.sites);
+    renderPlanning();
+  } catch (e) {
+    err.textContent = t('login_err'); btn.disabled = false; btn.textContent = t('login_btn');
+  }
+}
+function logout() {
+  if (!confirm(t('logoutQ'))) return;
+  localStorage.removeItem(SESS_KEY); session = null;
+  // Retire les infos des sites du planning (adresses, accès) ; l'avancement et les photos restent
+  sites = sites.filter(s => s.status !== 'todo' || s.local);
+  save(); renderLogin();
+}
+
+/* ---- Installation (écran d'accueil) + hors-ligne ---- */
+let installEvt = null;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installEvt = e; if (rerender) rerender(); });
+window.addEventListener('appinstalled', () => { installEvt = null; if (rerender) rerender(); });
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+function installCard() {
+  if (isStandalone() || location.protocol === 'file:') return '';
+  if (installEvt) return `<button class="btn green" onclick="doInstall()">${t('inst_btn')}</button>`;
+  return `<div class="card muted" style="margin-top:12px">${IS_IOS ? t('inst_ios') : t('inst_other')}</div>`;
+}
+async function doInstall() { if (!installEvt) return; installEvt.prompt(); await installEvt.userChoice; installEvt = null; rerender(); }
+function registerSW() {
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+}
+
+init();
+</script>
+</body>
+</html>
