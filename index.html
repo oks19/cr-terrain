@@ -33,6 +33,8 @@ h2 { font-size:15px; text-transform:uppercase; letter-spacing:.05em; color:var(-
 .btn { display:block; width:100%; border:0; border-radius:12px; padding:16px; font-size:17px; font-weight:700; color:#fff; background:var(--blue); margin-top:10px; }
 .btn.green { background:var(--green); } .btn.red { background:var(--red); } .btn.ghost { background:#fff; color:var(--blue); border:2px solid var(--blue); }
 .btn:disabled { opacity:.4; }
+a.btn { text-align:center; text-decoration:none; box-sizing:border-box; }
+.btn.fir { margin:0 0 14px; background:#fff7ec; color:#a24d00; border:2px solid #f0a050; }
 .row { display:flex; gap:10px; } .row > * { flex:1; }
 .footer { position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid var(--line); padding:10px 14px calc(10px + env(safe-area-inset-bottom)); }
 .footer .inner { max-width:640px; margin:0 auto; }
@@ -84,8 +86,8 @@ a.nav { display:block; text-align:center; text-decoration:none; background:#eef3
    ============================================================ */
 
 // Données des sites : chiffrées, injectées par build.js (déchiffrées après connexion)
-const SEC = {"iter":310000,"data":{"iv":"7m4re4Wtk3faxzSC","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"6PhFzcDTJmXkRBi1","wk":"xT2gFPEbDG0N0HZGNmuAYwyYfN2TveUhAKhuQoxz7TtXV2tlztOZxxF4f9jTpr4O"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"j8u/enN1Sg1i7Nqb","wk":"Wvrt+MnNXK19ULl7Wx0HKGyT4B3LBZeGLibidUZSBEqJ+kaQ9xwm2+lHY6ZdVjQM"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"BhBzr7N0b3oPALfv","wk":"Z6flZZxBbcr+0lCdLbSZwFOJ7w4+8VFCMI7g4hE2z62yQIjvqUHYwmZonpsqLyTG"}}};
-const BUILD = '2026-11-25 09:31';
+const SEC = {"iter":310000,"data":{"iv":"15MBsNN1SS7hVXFP","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"eK37HMRRaHoUKfI6","wk":"v4HuuqVQyF6zqpWbLH/suzsnogwqxBhVsKVz4VF9errKgIb1ApHDLPQbLnAlpcwB"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"i4fBkUB3pVmFjdpq","wk":"qpfyCvhHSMNeHoJdAbpHGVdCgGlYSi3g2rHG2ZerigUbSnfU4Cto3wRlZHKaXUPw"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"tviHKOd6fooRAgZu","wk":"UOwsNU8vog2e3bQ4gBK32e+Fap5lLzJw+FnP/dHND1UmgWqdTb/viU3ClqVEMlE7"}},"docs":[{"name":"FIR Nationale Orange.pdf","file":"fir-kjoa7Z09.bin","iv":"Ju1D+6Q89tmB5H+t"}]};
+const BUILD = '2026-11-25 10:18';
 
 // Parcours : 2 photos avant, intervention, 6 photos après, fin
 // cap = légende dans le PDF (toujours en français)
@@ -129,7 +131,7 @@ const CAUSES_ACCES = {
 /* ---------------- Langues de l'interface (le PDF reste en français) ---------------- */
 const I18N = {
   fr: {
-    app:'CR Installation électrique Juniper', back:'← Retour', planning:'Planning du {0}', nodate:'Sans date', addSite:'+ Ajouter un site',
+    app:'CR Installation électrique Juniper', back:'← Retour', planning:'Planning du {0}', nodate:'Sans date', addSite:'+ Ajouter un site', fir:'📄 FIR Nationale Orange (consignes sécurité)', firWait:'📄 FIR Nationale Orange – chargement…', savePh:'💾 Enregistrer les photos dans le téléphone', savePhIos:'Dans le menu qui s’ouvre, choisissez « Enregistrer les images » : elles iront dans Photos.', savePhNone:'Aucune photo à enregistrer.',
     st_todo:'À faire', st_progress:'En cours', st_done:'Fait', st_nok:'Non fait', repasse:'Repasse',
     f_title:'Ajouter un site', f_nro:'Code site (NRO / NRA) *', f_adr:'Adresse', f_cp:'Code postal', f_ville:'Ville', f_date:'Date prévue', f_add:'Ajouter au planning',
     e_nro:'Le code site est obligatoire.', e_dup:'Ce site est déjà dans le planning.',
@@ -166,7 +168,7 @@ const I18N = {
     's.ap_arr_ferm':'Face arrière – porte fermée', 'h.ap_arr_ferm':'Refermer la porte arrière, même cadrage.',
   },
   sq: {
-    app:'Raport – Instalim elektrik Juniper', back:'← Kthehu', planning:'Plani i {0}', nodate:'Pa datë', addSite:'+ Shto një objekt',
+    app:'Raport – Instalim elektrik Juniper', back:'← Kthehu', planning:'Plani i {0}', nodate:'Pa datë', addSite:'+ Shto një objekt', fir:'📄 FIR Kombëtare Orange (udhëzime sigurie)', firWait:'📄 FIR Kombëtare Orange – po ngarkohet…', savePh:'💾 Ruaj fotot në telefon', savePhIos:'Në menunë që hapet, zgjidh « Ruaj imazhet »: do të shkojnë te Fotot.', savePhNone:'Nuk ka foto për të ruajtur.',
     st_todo:'Për t’u bërë', st_progress:'Në proces', st_done:'Kryer', st_nok:'Pa kryer', repasse:'Rikthim',
     f_title:'Shto një objekt', f_nro:'Kodi i objektit (NRO / NRA) *', f_adr:'Adresa', f_cp:'Kodi postar', f_ville:'Qyteti', f_date:'Data e planifikuar', f_add:'Shto në plan',
     e_nro:'Kodi i objektit është i detyrueshëm.', e_dup:'Ky objekt është tashmë në plan.',
@@ -305,6 +307,7 @@ function renderPlanning() {
   const groups = {};
   sites.forEach(s => (groups[s.datePlan || t('nodate')] ||= []).push(s));
   $app.innerHTML = bar(t('app')) + `<main>
+    ${firButton()}
     ${Object.entries(groups).map(([d, list]) => `<h2>${t('planning', esc(d))}</h2>` + list.map(s => `
       <div class="card site" onclick="openSite('${esc(s.nro)}')">
         <div class="nro">${esc(s.nro)}</div>
@@ -460,6 +463,7 @@ async function shoot(k, gallery = false) {
   if (!blob) return;
   const s = siteBy(current);
   dropURL(s.nro, k); await putPhoto(s.nro, k, blob);
+  autoBackup(s, k, blob, gallery);
   renderStep();
 }
 
@@ -537,7 +541,7 @@ async function setCause(k) {
 }
 async function shootNok(k = 'nok', gallery = false) {
   const blob = await takePhoto(gallery); if (!blob) return;
-  const s = siteBy(current); dropURL(s.nro, k); await putPhoto(s.nro, k, blob); renderNok();
+  const s = siteBy(current); dropURL(s.nro, k); await putPhoto(s.nro, k, blob); autoBackup(s, k, blob, gallery); renderNok();
 }
 function cancelNok() { const s = siteBy(current); s.mode = null; save(); renderSite(); }
 function finishNok() {
@@ -545,6 +549,28 @@ function finishNok() {
   const txt = s.motif === 'autre' ? (s.motifAutre || '').trim() : m.motif;
   if (!txt) return alert(t('e_motif'));
   s.motifTxt = txt; s.legende = (s.legende || m.leg).trim(); s.status = 'nok'; save(); renderCR();
+}
+
+/* ---- Sauvegarde des photos dans le téléphone (si les données de l'appli étaient effacées) ---- */
+const NOK_CAP = { nok:'Constat', nok_site:'Vue globale du site', nok_arr:'Baie face arrière' };
+const photoName = (s, k) => (s.nro + ' - ' + ((STEP[k] && STEP[k].cap) || NOK_CAP[k] || k) + '.jpg').replace(/[\\/:*?"<>|]/g, '-');
+function downloadBlob(blob, name) {
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+// Android : copie automatique dans « Téléchargements » de chaque photo prise avec l'appareil
+function autoBackup(s, k, blob, gallery) { if (!IS_IOS && !gallery) { try { downloadBlob(blob, photoName(s, k)); } catch (e) {} } }
+let crPhotos = [];
+async function loadCrPhotos(s) {
+  const keys = s.status === 'nok' ? nokList(s).map(p => p.k) : PHOTO_STEPS.map(p => p.k);
+  crPhotos = [];
+  for (const k of keys) { const b = await getPhoto(s.nro, k); if (b) crPhotos.push(new File([b], photoName(s, k), { type:'image/jpeg' })); }
+}
+async function savePhotos() {
+  if (!crPhotos.length) return alert(t('savePhNone'));
+  if (IS_IOS && navigator.canShare && navigator.canShare({ files: crPhotos })) {
+    try { await navigator.share({ files: crPhotos }); } catch (e) {}
+  } else crPhotos.forEach((f, i) => setTimeout(() => downloadBlob(f, f.name), i * 400));
 }
 
 /* ---- Compte rendu : aperçu + partage (PDF toujours en français) ---- */
@@ -557,10 +583,13 @@ async function renderCR() {
     const pages = await buildPages(s);
     lastPdf = { name: `${s.nro} - CR Installation électrique Juniper.pdf`, blob: await makePdf(pages) };
     const imgs = pages.map(c => c.toDataURL('image/jpeg', 0.6));
+    await loadCrPhotos(s);
     $app.innerHTML = bar(t('crHead', esc(s.nro)), 'renderPlanning()') + `<main>
       <div class="card"><b>${esc(lastPdf.name)}</b><div class="muted">${t('pages', pages.length)} · ${(lastPdf.blob.size / 1e6).toFixed(1)} Mo</div>
         ${t('pdfLang') ? `<div class="muted" style="margin-top:4px">${t('pdfLang')}</div>` : ''}</div>
       <div class="preview">${imgs.map(u => `<img src="${u}">`).join('')}</div>
+      <button class="btn ghost" onclick="savePhotos()">${t('savePh')}</button>
+      ${IS_IOS ? `<div class="muted" style="text-align:center;font-size:13px;margin-top:4px">${t('savePhIos')}</div>` : ''}
       <button class="btn ghost" onclick="openSite('${esc(s.nro)}')">${t('backSite')}</button>
     </main>
     <div class="footer"><div class="inner row">
@@ -578,7 +607,7 @@ function downloadPdf() {
 async function sharePdf() {
   const file = new File([lastPdf.blob], lastPdf.name, { type:'application/pdf' });
   if (navigator.canShare && navigator.canShare({ files:[file] })) {
-    try { await navigator.share({ files:[file], title:lastPdf.name }); } catch (e) { if (e.name !== 'AbortError') downloadPdf(); }
+    try { await navigator.share({ files:[file] }); } catch (e) { if (e.name !== 'AbortError') downloadPdf(); }
   } else { alert(t('noShare')); downloadPdf(); }
 }
 
@@ -791,23 +820,43 @@ async function deriveKek(password, saltB64) {
   const base = await subtle().importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
   return subtle().deriveBits({ name:'PBKDF2', hash:'SHA-256', salt:b64d(saltB64), iterations:SEC.iter }, base, 256);
 }
+/* ---- FIR : document chiffré, lisible seulement après connexion ---- */
+let DATA_KEY = null, firURL = null;
+async function prepareDocs() {
+  if (firURL || !DATA_KEY || !SEC || !SEC.docs || !SEC.docs.length) return;
+  try {
+    const d = SEC.docs[0];
+    const ct = await (await fetch(d.file)).arrayBuffer();
+    const pt = await subtle().decrypt({ name:'AES-GCM', iv:b64d(d.iv) }, DATA_KEY, ct);
+    firURL = URL.createObjectURL(new Blob([pt], { type:'application/pdf' }));
+    if (rerender === renderPlanning) renderPlanning();
+  } catch (e) { console.warn('FIR', e); }
+}
+function firButton() {
+  if (!SEC || !SEC.docs || !SEC.docs.length) return '';
+  if (!firURL) return `<div class="btn fir" style="opacity:.6">${t('firWait')}</div>`;
+  // iPhone : ouverture dans le lecteur PDF (avec Partager) ; Android : téléchargé avec son nom
+  return `<a class="btn fir" href="${firURL}" target="_blank" rel="noopener" ${IS_IOS ? '' : `download="${esc(SEC.docs[0].name)}"`}>${t('fir')}</a>`;
+}
 async function openData(id, kekRaw) {
   const u = SEC.users[id];
   if (!u) throw new Error('compte');
   const kek = await subtle().importKey('raw', kekRaw, 'AES-GCM', false, ['decrypt']);
   const dk = await subtle().decrypt({ name:'AES-GCM', iv:b64d(u.iv) }, kek, b64d(u.wk));
   const key = await subtle().importKey('raw', dk, 'AES-GCM', false, ['decrypt']);
+  DATA_KEY = key;
   const pt = await subtle().decrypt({ name:'AES-GCM', iv:b64d(SEC.data.iv) }, key, b64d(SEC.data.ct));
   return JSON.parse(new TextDecoder().decode(pt));
 }
 
 async function init() {
   registerSW();
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});
   const saved = JSON.parse(localStorage.getItem(SESS_KEY) || 'null');
   if (saved && SEC) {
     try {
       const data = await openData(saved.id, b64d(saved.kek));
-      session = saved; applyPlanning(data.sites); return renderPlanning();
+      session = saved; applyPlanning(data.sites); prepareDocs(); return renderPlanning();
     } catch (e) { localStorage.removeItem(SESS_KEY); return renderLogin('login_exp'); }
   }
   renderLogin();
@@ -845,6 +894,7 @@ async function doLogin() {
     session = { id, login, kek: b64e(kekRaw) };
     localStorage.setItem(SESS_KEY, JSON.stringify(session));
     applyPlanning(data.sites);
+    prepareDocs();
     renderPlanning();
   } catch (e) {
     err.textContent = t('login_err'); btn.disabled = false; btn.textContent = t('login_btn');
@@ -853,6 +903,7 @@ async function doLogin() {
 function logout() {
   if (!confirm(t('logoutQ'))) return;
   localStorage.removeItem(SESS_KEY); session = null;
+  DATA_KEY = null; if (firURL) { URL.revokeObjectURL(firURL); firURL = null; }
   // Retire les infos des sites du planning (adresses, accès) ; l'avancement et les photos restent
   sites = sites.filter(s => s.status !== 'todo' || s.local);
   save(); renderLogin();
