@@ -86,8 +86,8 @@ a.nav { display:block; text-align:center; text-decoration:none; background:#eef3
    ============================================================ */
 
 // Données des sites : chiffrées, injectées par build.js (déchiffrées après connexion)
-const SEC = {"iter":310000,"data":{"iv":"OYJk1Zr4Jlwsh9MI","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"iueFsYDl8OlnvRO6","wk":"320zJ68wGvBVzq1P8ZdZ9UqSNUkLNNy3sjsUyLpBMjm2TM7PSzhPvtI+r35JdYjP"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"ICApzc1OYKLp1Aqc","wk":"pl8NmejxIvs0l1JCIXIoSmBRCdsiepqnhyA9/ktUalYnqyzh95SQ3Gcq/O6sOIOE"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"AiB+2rMrRLuiW4cq","wk":"q/CAVIARfbdpXpsxuX2tDk+htmJES4m283sVb/lyQOT1Zch+Td+rVkOCtFOM1ntu"}},"docs":[{"name":"FIR Nationale Orange.pdf","file":"fir-FKwH89tH.bin","iv":"j5siBu5/TJf+XKK5"}]};
-const BUILD = '2026-11-25 12:20';
+const SEC = {"iter":310000,"data":{"iv":"6TMPqvMKhCS/H0M8","ct":"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"},"users":{"rLLolqbtEkLmUvNaCmMTMO":{"salt":"qKpySn+uSgauUqvHiYBAbA==","iv":"H4WiE/7bd+VaTC28","wk":"F3FC2JRm4S4yP1j0Qqt1yzgk2fi9JvJfzdLwDgT7NON2GopzpDSQL7Mnj/kZ9QrZ"},"yVNjUGKrc/Akkv663vYv0p":{"salt":"stcykVtMdvCKQAS+kDReAQ==","iv":"yh9/8GGzrRFc0mgR","wk":"ZcIVxhAJLR3JVcfOYVmY7W6/qojr8igQZMYtbLNAwXiDay8476X+nbWy+sUJVts+"},"HZ6TDYK1Y4mw168zZaXgTP":{"salt":"Kd06Vi00Bb3BY02AdxchKQ==","iv":"W+v32w3gP/mXn3MT","wk":"jQwlTZIAdXaZ15T3emmDn78LRc42TEWEVIn4RyhsURv1Y4GszbdmgvaaGbnf+rSw"}},"docs":[{"name":"FIR Nationale Orange.pdf","file":"fir-i7oE4IgP.bin","iv":"LY7qPczF9bS5eG9c"}]};
+const BUILD = '2026-11-25 12:55';
 
 // Parcours : 2 photos avant, intervention, 6 photos après, fin
 // cap = légende dans le PDF (toujours en français)
@@ -110,16 +110,22 @@ const STEP = Object.fromEntries(STEPS.map(s => [s.k, s]));
 const MOTIFS = {
   acces:   { motif:'Accès NOK – accès au site impossible', constat:"Constat d'accès", leg:'Accès NOK – accès au site impossible' },
   juniper: { motif:'Switch Juniper absent de la baie – raccordement électrique impossible', constat:'Constat dans la baie', leg:'Baie ouverte, face avant – absence du switch Juniper' },
+  baie:    { motif:'Baie non localisée sur le site – baie absente ou introuvable, raccordement électrique impossible', constat:'Constat sur site', leg:'Emplacement prévu de la baie – baie non localisée' },
   autre:   { motif:'', constat:'Constat sur site', leg:'Constat sur site' },
 };
 // Photos demandées selon le motif (cap = légende PDF ; null = légende saisie par le technicien)
 const NOK_PHOTOS = {
   acces:   [{ k:'nok_site', cap:'Vue globale du site' }, { k:'nok', cap:null }],
   juniper: [{ k:'nok', cap:null }, { k:'nok_arr', cap:'Baie ouverte – face arrière' }],
+  baie:    [{ k:'nok_salle', cap:'Vue d’ensemble de la salle' }, { k:'nok', cap:null }],
   autre:   [{ k:'nok', cap:null }],
 };
-const NOK_KEYS = ['nok', 'nok_site', 'nok_arr'];
-const nokList = s => NOK_PHOTOS[s.motif] || NOK_PHOTOS.autre;
+const NOK_KEYS = ['nok', 'nok_site', 'nok_arr', 'nok_salle'];
+const isNokKey = k => k.startsWith('nok');
+// Photos complémentaires libres (tous motifs) : clés nok_x1, nok_x2… listées dans s.nokExtra
+const extraList = s => (s.nokExtra || []).map((id, i) => ({ k:'nok_x' + id, cap:'Photo complémentaire ' + (i + 1), extra:true, n:i + 1 }));
+const nokBase = s => NOK_PHOTOS[s.motif] || NOK_PHOTOS.autre;
+const nokList = s => [...nokBase(s), ...extraList(s)];
 // Cause précise d'un accès NOK : alimente la légende de la photo (PDF, français)
 const CAUSES_ACCES = {
   badge:   { leg:'Accès NOK – badgeuse rouge, badge refusé' },
@@ -154,7 +160,10 @@ const I18N = {
     logout:'Se déconnecter', logoutQ:'Se déconnecter ? Les photos déjà prises restent sur le téléphone.', connected:'Connecté : {0}',
     inst_btn:'📲 Installer l\'appli', inst_ios:'📲 <b>Installer l\'appli</b> : touchez <b>Partager</b> (carré avec flèche ⬆️) puis <b>« Sur l\'écran d\'accueil »</b>.',
     inst_other:'📲 Pour installer : menu du navigateur ⋮ puis <b>« Installer l\'application »</b> ou <b>« Ajouter à l\'écran d\'accueil »</b>.',
-    'm.acces':'Accès NOK', 'm.juniper':'Switch Juniper absent de la baie', 'm.autre':'Autre motif',
+    'm.acces':'Accès NOK', 'm.juniper':'Switch Juniper absent de la baie', 'm.baie':'Baie non localisée', 'm.autre':'Autre motif',
+    'mh.baie':'2 photos minimum : une vue d’ensemble de la salle, puis l’emplacement prévu de la baie (ou la zone où elle devrait être). Ajoutez d’autres photos si besoin.',
+    'np.baie.nok_salle':'Vue d’ensemble de la salle', 'np.baie.nok':'Emplacement prévu de la baie',
+    addPh:'➕ Ajouter une photo', addPhG:'➕ Ajouter depuis la galerie', extraN:'Photo complémentaire {0}', extraHint:'Photos en plus, facultatives : autant que nécessaire.',
     'mh.acces':'2 photos : la vue globale du site, puis la porte d’accès (avec la badgeuse, ou la serrure s’il n’y a pas de badge).', 'mh.juniper':'2 photos de la baie ouverte : face avant (emplacement vide) et face arrière.', 'mh.autre':'Photo illustrant le problème.',
     'np.acces.nok_site':'Vue globale du site', 'np.acces.nok':'Porte d’accès (badgeuse ou serrure)', 'np.juniper.nok':'Baie ouverte – face avant (emplacement vide)', 'np.juniper.nok_arr':'Baie ouverte – face arrière', 'np.autre.nok':'Photo du problème',
     'c.badge':'Badgeuse rouge / badge refusé', 'c.portail':'Portail qui ne s\'ouvre pas', 'c.serrure':'Serrure / clé ne fonctionne pas', 'c.autre':'Autre (préciser dans la légende)',
@@ -191,7 +200,10 @@ const I18N = {
     logout:'Dil', logoutQ:'Të dilni? Fotot e bëra mbeten në telefon.', connected:'I lidhur: {0}',
     inst_btn:'📲 Instalo aplikacionin', inst_ios:'📲 <b>Instalo aplikacionin</b>: prek <b>Ndaj</b> (katrori me shigjetë ⬆️) pastaj <b>« Shto në ekranin bazë »</b>.',
     inst_other:'📲 Për ta instaluar: menyja e shfletuesit ⋮ pastaj <b>« Instalo aplikacionin »</b> ose <b>« Shto në ekranin bazë »</b>.',
-    'm.acces':'Hyrja NOK', 'm.juniper':'Switch-i Juniper mungon në raft', 'm.autre':'Arsye tjetër',
+    'm.acces':'Hyrja NOK', 'm.juniper':'Switch-i Juniper mungon në raft', 'm.baie':'Rafti nuk u gjet', 'm.autre':'Arsye tjetër',
+    'mh.baie':'Të paktën 2 foto: pamja e përgjithshme e sallës, pastaj vendi i parashikuar i raftit (ose zona ku duhet të ishte). Shto foto të tjera nëse duhet.',
+    'np.baie.nok_salle':'Pamja e përgjithshme e sallës', 'np.baie.nok':'Vendi i parashikuar i raftit',
+    addPh:'➕ Shto një foto', addPhG:'➕ Shto nga galeria', extraN:'Foto shtesë {0}', extraHint:'Foto shtesë, opsionale: sa të duhen.',
     'mh.acces':'2 foto: pamja e përgjithshme e objektit, pastaj dera e hyrjes (me lexuesin e kartës, ose bravën nëse nuk ka kartë).', 'mh.juniper':'2 foto të raftit të hapur: pjesa e përparme (vendi bosh) dhe pjesa e pasme.', 'mh.autre':'Foto që tregon problemin.',
     'np.acces.nok_site':'Pamja e përgjithshme e objektit', 'np.acces.nok':'Dera e hyrjes (lexuesi i kartës ose brava)', 'np.juniper.nok':'Rafti i hapur – pjesa e përparme (vendi bosh)', 'np.juniper.nok_arr':'Rafti i hapur – pjesa e pasme', 'np.autre.nok':'Foto e problemit',
     'c.badge':'Lexuesi i kartës i kuq / karta refuzohet', 'c.portail':'Porta nuk hapet', 'c.serrure':'Brava / çelësi nuk funksionon', 'c.autre':'Tjetër (saktëso në përshkrim)',
@@ -399,8 +411,8 @@ function reopen() { const s = siteBy(current); s.status = 'progress'; s.step = S
 async function resetSite() {
   if (!confirm(t('resetQ'))) return;
   const s = siteBy(current);
-  for (const st of [...PHOTO_STEPS.map(p => p.k), ...NOK_KEYS]) { dropURL(s.nro, st); await delPhoto(s.nro, st); }
-  Object.assign(s, { status:'todo', step:0, mode:null, dateInter:null, motif:null, cause:null, motifTxt:null, motifAutre:null, legende:null });
+  for (const st of [...PHOTO_STEPS.map(p => p.k), ...NOK_KEYS, ...extraList(s).map(p => p.k)]) { dropURL(s.nro, st); await delPhoto(s.nro, st); }
+  Object.assign(s, { status:'todo', step:0, mode:null, dateInter:null, motif:null, nokExtra:[], cause:null, motifTxt:null, motifAutre:null, legende:null });
   save(); renderSite();
 }
 
@@ -450,7 +462,8 @@ async function removePhoto(k) {
   if (!confirm(t('delPhQ'))) return;
   const s = siteBy(current);
   dropURL(s.nro, k); await delPhoto(s.nro, k);
-  NOK_KEYS.includes(k) ? renderNok() : renderStep();
+  if (k.startsWith('nok_x')) { s.nokExtra = (s.nokExtra || []).filter(id => 'nok_x' + id !== k); save(); }
+  isNokKey(k) ? renderNok() : renderStep();
 }
 // Retour à « À faire » depuis n'importe quel état (en cours, fait, non fait) ; les photos restent
 function backToTodo(q) {
@@ -502,8 +515,9 @@ async function renderNok() {
   rerender = renderNok;
   const s = siteBy(current);
   const m = MOTIFS[s.motif || 'acces'];
-  const list = nokList(s);
+  const list = nokBase(s), extras = extraList(s);
   const urls = await Promise.all(list.map(p => photoURL(s.nro, p.k)));
+  const xurls = await Promise.all(extras.map(p => photoURL(s.nro, p.k)));
   const firstMissing = list.find((p, i) => !urls[i]);
   const motifKey = NOK_PHOTOS[s.motif] ? s.motif : 'autre';
   $app.innerHTML = bar(t('nokHead', esc(s.nro)), 'renderPlanning()') + `<main>
@@ -529,6 +543,15 @@ async function renderNok() {
     <div class="photo-box" style="margin-top:6px" onclick="shootNok('${p.k}')">${urls[i] ? `<img src="${urls[i]}">` : '<div class="muted" style="font-size:48px">📷</div>'}</div>
     <div style="text-align:center"><button class="link" onclick="shootNok('${p.k}', true)">${t('gallery')}</button></div>
     ${urls[i] ? `<button class="btn ghost" onclick="shootNok('${p.k}')">${t('retake')}</button><div style="text-align:center"><button class="link red" onclick="removePhoto('${p.k}')">${t('delPh')}</button></div>` : ''}`).join('')}
+    ${extras.map((p, i) => `
+    <div class="step-title" style="font-size:17px;margin-top:16px">${t('extraN', p.n)}</div>
+    <div class="photo-box" style="margin-top:6px" onclick="shootNok('${p.k}')">${xurls[i] ? `<img src="${xurls[i]}">` : '<div class="muted" style="font-size:48px">📷</div>'}</div>
+    <div style="text-align:center"><button class="link red" onclick="removePhoto('${p.k}')">${t('delPh')}</button></div>`).join('')}
+    <div class="card" style="margin-top:16px;text-align:center">
+      <div class="muted" style="font-size:14px;margin-bottom:8px">${t('extraHint')}</div>
+      <button class="btn ghost" onclick="addExtra()">${t('addPh')}</button>
+      <div style="text-align:center"><button class="link" onclick="addExtra(true)">${t('addPhG')}</button></div>
+    </div>
     <div style="margin-top:14px;text-align:center"><button class="link" onclick="cancelNok()">${t('cancelNok')}</button></div>
   </main>
   <div class="footer"><div class="inner">
@@ -545,6 +568,13 @@ async function shootNok(k = 'nok', gallery = false) {
   const blob = await takePhoto(gallery); if (!blob) return;
   const s = siteBy(current); dropURL(s.nro, k); await putPhoto(s.nro, k, blob); autoBackup(s, k, blob, gallery); renderNok();
 }
+async function addExtra(gallery = false) {
+  const blob = await takePhoto(gallery); if (!blob) return;
+  const s = siteBy(current);
+  const id = Math.max(0, ...(s.nokExtra || [])) + 1, k = 'nok_x' + id;
+  s.nokExtra = [...(s.nokExtra || []), id]; save();
+  await putPhoto(s.nro, k, blob); autoBackup(s, k, blob, gallery); renderNok();
+}
 function cancelNok() { const s = siteBy(current); s.mode = null; save(); renderSite(); }
 function finishNok() {
   const s = siteBy(current); const m = MOTIFS[s.motif];
@@ -556,7 +586,7 @@ function finishNok() {
 /* ---- Sauvegarde des photos dans le téléphone (si les données de l'appli étaient effacées) ---- */
 const NOK_CAP = { nok:'Constat', nok_site:'Vue globale du site', nok_arr:'Baie face arrière' };
 const extOf = b => ({ 'image/png':'png', 'image/heic':'heic', 'image/heif':'heif', 'image/webp':'webp' }[b && b.type] || 'jpg');
-const photoName = (s, k, b) => (s.nro + ' - ' + ((STEP[k] && STEP[k].cap) || NOK_CAP[k] || k) + '.' + extOf(b)).replace(/[\\/:*?"<>|]/g, '-');
+const photoName = (s, k, b) => (s.nro + ' - ' + ((STEP[k] && STEP[k].cap) || ((nokList(s).find(p => p.k === k) || {}).cap) || NOK_CAP[k] || k) + '.' + extOf(b)).replace(/[\\/:*?"<>|]/g, '-');
 function downloadBlob(blob, name) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 10000);
@@ -789,13 +819,22 @@ async function buildPages(s) {
     y = drawTable(x, y, s, { txt:'NON FAIT', color:C.red }, s.motifTxt);
     y = drawH2(x, y, m.constat, C.red);
     const hAvail = Math.min(mm(190), H - mm(12) - y - mm(6));
+    const colW = (CW - mm(5)) / 2;
     if (figs.length === 1) drawFig(x, figs[0].img, L, y, CW, hAvail, figs[0].cap, null, 'contain');
     else {
-      const colW = (CW - mm(5)) / 2;
       const boxH = Math.min(hAvail, colW * 4 / 3); // format photo portrait 3:4, collé sous le titre
-      figs.forEach((fg, i) => drawFig(x, fg.img, L + i * (colW + mm(5)), y, colW, boxH, fg.cap, null, 'contain'));
+      figs.slice(0, 2).forEach((fg, i) => drawFig(x, fg.img, L + i * (colW + mm(5)), y, colW, boxH, fg.cap, null, 'contain'));
     }
     pages.push(c);
+    // Photos suivantes : 4 par page (2 × 2)
+    for (let i = 2; i < figs.length; i += 4) {
+      const [c2, x2] = newPage();
+      let y2 = drawHeader(x2, s, `${s.adresse} – ${s.cp} ${s.ville} · ${s.dateInter || ''}`);
+      y2 = drawH2(x2, y2, m.constat + ' – suite', C.red);
+      const cellH = (H - mm(12) - y2 - mm(6) - mm(16)) / 2;
+      figs.slice(i, i + 4).forEach((fg, j) => drawFig(x2, fg.img, L + (j % 2) * (colW + mm(5)), y2 + Math.floor(j / 2) * (cellH + mm(8)), colW, cellH, fg.cap, null, 'contain'));
+      pages.push(c2);
+    }
     return pages;
   }
   const im = {};
